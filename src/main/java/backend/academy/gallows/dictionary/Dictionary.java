@@ -11,25 +11,29 @@ public class Dictionary {
     private static final Random random = new Random();
 
     static {
-        EnumMap<Themes, List<String>> easyWords = new EnumMap<>(Themes.class);
-        easyWords.put(Themes.FRUITS,
+        initializeDictionary();
+    }
+
+    private static void initializeDictionary() {
+        addWords(Difficulties.EASY, Themes.FRUITS,
             List.of("банан", "груша", "дыня", "инжир", "киви", "лайм", "лимон", "манго", "слива", "фрукт", "хурма"));
-        easyWords.put(Themes.BERRIES, List.of("бузина", "калина", "клюква", "малина", "рябина"));
-        easyWords.put(Themes.VEGETABLES, List.of("бобы", "горох", "овощ", "перец", "редис", "тыква", "укроп"));
-        dictionary.put(Difficulties.EASY, easyWords);
+        addWords(Difficulties.EASY, Themes.BERRIES, List.of("бузина", "калина", "клюква", "малина", "рябина"));
+        addWords(Difficulties.EASY, Themes.VEGETABLES,
+            List.of("бобы", "горох", "овощ", "перец", "редис", "тыква", "укроп"));
 
-        EnumMap<Themes, List<String>> mediumWords = new EnumMap<>(Themes.class);
-        mediumWords.put(Themes.FRUITS, List.of("абрикос", "ананас", "персик", "помело", "яблоко"));
-        mediumWords.put(Themes.BERRIES, List.of("ежевика", "черника"));
-        mediumWords.put(Themes.VEGETABLES,
+        addWords(Difficulties.MEDIUM, Themes.FRUITS, List.of("абрикос", "ананас", "персик", "помело", "яблоко"));
+        addWords(Difficulties.MEDIUM, Themes.BERRIES, List.of("ежевика", "черника"));
+        addWords(Difficulties.MEDIUM, Themes.VEGETABLES,
             List.of("базилик", "капуста", "морковь", "огурец", "помидор", "свекла", "фасоль", "чеснок", "щавель"));
-        dictionary.put(Difficulties.MEDIUM, mediumWords);
 
-        EnumMap<Themes, List<String>> hardWords = new EnumMap<>(Themes.class);
-        hardWords.put(Themes.FRUITS, List.of("бергамот", "виноград", "грейпфрут", "мандарин"));
-        hardWords.put(Themes.BERRIES, List.of("барбарис", "брусника", "голубика", "клубника", "облепиха"));
-        hardWords.put(Themes.VEGETABLES, List.of("баклажаны", "картофель", "петрушка", "сельдерей"));
-        dictionary.put(Difficulties.HARD, hardWords);
+        addWords(Difficulties.HARD, Themes.FRUITS, List.of("бергамот", "виноград", "грейпфрут", "мандарин"));
+        addWords(Difficulties.HARD, Themes.BERRIES,
+            List.of("барбарис", "брусника", "голубика", "клубника", "облепиха"));
+        addWords(Difficulties.HARD, Themes.VEGETABLES, List.of("баклажаны", "картофель", "петрушка", "сельдерей"));
+    }
+
+    private static void addWords(Difficulties difficulty, Themes theme, List<String> words) {
+        dictionary.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
     }
 
     public static Difficulties getRandomDifficulty() {
