@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Dictionary {
     private static final Map<Difficulties, Map<Themes, List<String>>> dictionary = new EnumMap<>(Difficulties.class);
-    Random random = new Random();
+    private static final Random random = new Random();
 
     static {
         dictionary.put(Difficulties.EASY, createWordMap(createWordMap(Map.of(Themes.FRUITS,
