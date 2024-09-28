@@ -32,15 +32,15 @@ public class Dictionary {
         dictionary.put(Difficulties.HARD, hardWords);
     }
 
-    public Difficulties getRandomDifficulty() {
+    public static Difficulties getRandomDifficulty() {
         return Difficulties.values()[random.nextInt(Difficulties.values().length)];
     }
 
-    public Themes getRandomTheme() {
+    public static Themes getRandomTheme() {
         return Themes.values()[random.nextInt(Themes.values().length)];
     }
 
-    public String getRandomWord(Difficulties difficult, Themes theme) {
+    public static String getRandomWord(Difficulties difficult, Themes theme) {
         List<String> words = dictionary.get(difficult).get(theme);
         int index = random.nextInt(words.size());
         return words.get(index);
