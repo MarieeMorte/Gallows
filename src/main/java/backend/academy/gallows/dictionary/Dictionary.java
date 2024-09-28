@@ -3,9 +3,11 @@ package backend.academy.gallows.dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class Dictionary {
     private static final Map<Difficulties, Map<Themes, List<String>>> dictionary = new HashMap<>();
+    Random random = new Random();
 
     static {
         Map<Themes, List<String>> easyWords = new HashMap<>();
@@ -30,5 +32,28 @@ public class Dictionary {
         dictionary.put(Difficulties.EASY, easyWords);
         dictionary.put(Difficulties.MEDIUM, mediumWords);
         dictionary.put(Difficulties.HARD, hardWords);
+    }
+
+    public Difficulties getRandomDifficult() {
+        return Difficulties.values()[random.nextInt(Difficulties.values().length)];
+    }
+
+    public Themes getRandomTheme() {
+        return Themes.values()[random.nextInt(Themes.values().length)];
+    }
+
+    public String getRandomWord(Difficulties difficult, Themes theme) {
+        Map<Themes, List<String>> wordsByDifficulty = dictionary.get(difficult);
+        if (wordsByDifficulty == null) {
+            throw new IllegalArgumentException("Difficulty level not found: " + difficult);
+        }
+
+        List<String> words = wordsByDifficulty.get(theme);
+        if (words == null || words.isEmpty()) {
+            throw new IllegalArgumentException("The topics are not found or are empty: " + theme);
+        }
+
+        int index = random.nextInt(words.size());
+        return words.get(index);
     }
 }
