@@ -11,10 +11,10 @@ public class Dictionary {
     private static final Random random = new Random();
 
     static {
-        dictionary.put(Difficulties.EASY, createWordMap(createWordMap(Map.of(Themes.FRUITS,
+        dictionary.put(Difficulties.EASY, createWordMap(Map.of(Themes.FRUITS,
             List.of("банан", "груша", "дыня", "инжир", "киви", "лайм", "лимон", "манго", "слива", "фрукт", "хурма"),
             Themes.BERRIES, List.of("бузина", "калина", "клюква", "малина", "рябина"), Themes.VEGETABLES,
-            List.of("бобы", "горох", "овощ", "перец", "редис", "тыква", "укроп")))));
+            List.of("бобы", "горох", "овощ", "перец", "редис", "тыква", "укроп"))));
 
         dictionary.put(Difficulties.MEDIUM, createWordMap(
             Map.of(Themes.FRUITS, List.of("абрикос", "ананас", "персик", "помело", "яблоко"), Themes.BERRIES,
