@@ -32,7 +32,7 @@ public class Dictionary {
         return new HashMap<>(entries);
     }
 
-    public Difficulties getRandomDifficult() {
+    public Difficulties getRandomDifficulty() {
         return Difficulties.values()[random.nextInt(Difficulties.values().length)];
     }
 
