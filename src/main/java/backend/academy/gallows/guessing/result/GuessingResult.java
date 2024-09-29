@@ -57,5 +57,4 @@ import java.util.Arrays;
     public boolean isGameOver() {
         return isGameWin() || isGameLoss();
     }
-
 }
