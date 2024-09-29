@@ -39,11 +39,24 @@ public class GameSession {
     }
 
     public static void main(String[] args) {
+        // Запуск игры "Виселица"
+
+        // Приветствие игрока и сообщение о начале игры
         greeting();
+
+        // Выбор уровня сложности игры
         difficultyLevelChoosing();
+
+        // Выбор темы для угадывания
         themeChoosing();
+
+        // Выбор количества попыток для угадывания
         attemptNumChoosing();
+
+        // Инициализация необходимых переменных и состояния игры
         initialization();
+
+        // Запуск игрового процесса
         game();
     }
 
