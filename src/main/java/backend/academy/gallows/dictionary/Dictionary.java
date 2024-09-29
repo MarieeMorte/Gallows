@@ -10,6 +10,9 @@ final public class Dictionary {
         new EnumMap<>(Difficulties.class);
     private static final Random RANDOM = new Random();
 
+    private static final String HERB_HINT_DESCRIPTION = "ароматная зелень, часто используется для украшения и приправы блюд.";
+
+
     static {
         initializeDictionary();
     }
@@ -48,7 +51,7 @@ final public class Dictionary {
             new WordWithHint("перец", "может быть сладким или острым, часто используется для приправы блюд."),
             new WordWithHint("редис", "круглый или овальный корнеплод, обычно красного цвета с острым вкусом."),
             new WordWithHint("тыква", "крупный оранжевый овощ, используемый в супах и десертах."),
-            new WordWithHint("укроп", "ароматная зелень, часто используется для украшения и приправы блюд.")));
+            new WordWithHint("укроп", HERB_HINT_DESCRIPTION)));
 
         addWords(Difficulties.MEDIUM, Themes.FRUITS,
             List.of(new WordWithHint("абрикос", "сладкий фрукт с бархатистой кожурой и косточкой внутри."),
@@ -72,7 +75,7 @@ final public class Dictionary {
                     "круглый или овальный плод, может быть красным, желтым или зеленым, используется в салатах и соусах."),
                 new WordWithHint("свекла", "корнеплод тёмного цвета, часто используется в салатах и борщах."),
                 new WordWithHint("фасоль", "Бобовое растение, семена которого популярны в различных блюдах."),
-                new WordWithHint("чеснок", "Ароматная специя, используемая для придания вкуса блюдам."),
+                new WordWithHint("чеснок", "ароматная специя, используемая для придания вкуса блюдам."),
                 new WordWithHint("щавель", "Листовой овощ с кислым вкусом, часто используется в супах и салатах.")));
 
         addWords(Difficulties.HARD, Themes.FRUITS,
@@ -99,7 +102,7 @@ final public class Dictionary {
             List.of(new WordWithHint("баклажаны", "тёмно-фиолетовые овощи, часто используемые в рагу и запеканках."),
                 new WordWithHint("картофель",
                     "клубнеплод, который является основным продуктом питания во многих странах."),
-                new WordWithHint("петрушка", "ароматная зелень, часто используется для украшения и приправы блюд."),
+                new WordWithHint("петрушка", HERB_HINT_DESCRIPTION),
                 new WordWithHint("сельдерей",
                     "хрустящий овощ с характерным вкусом, часто добавляется в салаты и супы.")));
     }
