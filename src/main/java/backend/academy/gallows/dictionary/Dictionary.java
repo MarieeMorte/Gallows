@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.Random;
 
 final public class Dictionary {
-    private static final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> dictionary =
+    private static final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> DICTIONARY =
         new EnumMap<>(Difficulties.class);
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     static {
         initializeDictionary();
@@ -105,12 +105,12 @@ final public class Dictionary {
     }
 
     private static void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
-        dictionary.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
+        DICTIONARY.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
     }
 
     public static WordWithHint getRandom(Difficulties difficult, Themes theme) {
-        List<WordWithHint> words = dictionary.get(difficult).get(theme);
-        int index = random.nextInt(words.size());
+        List<WordWithHint> words = DICTIONARY.get(difficult).get(theme);
+        int index = RANDOM.nextInt(words.size());
         return words.get(index);
     }
 }
