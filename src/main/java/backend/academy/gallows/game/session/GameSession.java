@@ -3,6 +3,7 @@ package backend.academy.gallows.game.session;
 import backend.academy.gallows.dictionary.Dictionary;
 import backend.academy.gallows.dictionary.Difficulties;
 import backend.academy.gallows.dictionary.Themes;
+import backend.academy.gallows.guessing.result.GuessingResult;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,11 +12,12 @@ public class GameSession {
     private static final Random random = new Random();
     private static Difficulties difficulty;
     private static Themes theme;
-    private static String word;
     private static int attemptsNum = -1;
+    private static int madeAttemptsNum = 0;
     private static final int MIN_ATTEMPTS = 0;
     private static final int MAX_ATTEMPTS = 9;
     private static final String[] HANGMAN_STAGES = {
+        "\n\n\n\n\n\n\n",
         "\n\n\n\n\n\n—————————",
         "\n   |\n   |\n   |\n   |\n   |\n   |\n—————————",
         "\n   | /\n   |/\n   |\n   |\n   |\n   |\n—————————",
@@ -31,8 +33,9 @@ public class GameSession {
         greeting();
         difficultyLevelChoosing();
         themeChoosing();
-        word = Dictionary.getRandomWord(difficulty, theme);
         attemptNumChoosing();
+
+        GuessingResult guessingResult = new GuessingResult(Dictionary.getRandomWord(difficulty, theme), attemptsNum);
     }
 
     private static void greeting() {
@@ -163,7 +166,7 @@ public class GameSession {
         System.out.println("\nВыбранное количество попыток: " + attemptsNum + ".");
     }
 
-    public static void displayHangman(int attempt) {
-        System.out.println(HANGMAN_STAGES[(int) (MAX_ATTEMPTS * (((double) attempt) / (attemptsNum)))]);
+    public static void displayHangman() {
+        System.out.println(HANGMAN_STAGES[(int) (MAX_ATTEMPTS * ((double) madeAttemptsNum / attemptsNum))]);
     }
 }
