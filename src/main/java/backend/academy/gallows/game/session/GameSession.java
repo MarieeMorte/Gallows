@@ -34,6 +34,10 @@ public class GameSession {
     @Getter private static int madeAttemptsNum = 0;
     @Getter private static GuessingResult guessingResult;
 
+    private GameSession() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static void main(String[] args) {
         greeting();
         difficultyLevelChoosing();
