@@ -4,6 +4,7 @@ import backend.academy.gallows.dictionary.Dictionary;
 import backend.academy.gallows.dictionary.Difficulties;
 import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
+import lombok.Getter;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -25,11 +26,11 @@ public class GameSession {
 
     private static final Scanner input = new Scanner(System.in);
     private static final Random random = new Random();
-    private static Difficulties difficulty;
-    private static Themes theme;
-    private static int attemptsNum = -1;
-    private static int madeAttemptsNum = 0;
-    private static GuessingResult guessingResult;
+    @Getter private static Difficulties difficulty;
+    @Getter private static Themes theme;
+    @Getter private static int attemptsNum = -1;
+    @Getter private static int madeAttemptsNum = 0;
+    @Getter private static GuessingResult guessingResult;
 
     public static void main(String[] args) {
         greeting();
@@ -40,13 +41,13 @@ public class GameSession {
         game();
     }
 
-    private static void greeting() {
+    static void greeting() {
         System.out.println("Добро пожаловать в консольную \"Виселицу\"!");
         displayGameRules();
         System.out.println("\nУдачной игры!");
     }
 
-    private static void displayGameRules() {
+    static void displayGameRules() {
         System.out.println("\nЗнаете ли Вы правила игры?");
         System.out.println("1. Да;");
         System.out.println("2. Нет.");
@@ -72,7 +73,7 @@ public class GameSession {
         System.out.println("За каждую неверную догадку визуализируется часть виселицы и фигурки висельника.");
     }
 
-    private static void difficultyLevelChoosing() {
+    static void difficultyLevelChoosing() {
         displayDifficultyOptions();
         setDifficulty(choosing());
     }
@@ -86,7 +87,7 @@ public class GameSession {
         System.out.print("\nВведите номер варианта ответа без дополнительных символов: ");
     }
 
-    private static int choosing() {
+    static int choosing() {
         String strAnswer = input.nextLine();
         while (!strAnswer.equals("1") && !strAnswer.equals("2") && !strAnswer.equals("3") && !strAnswer.equals("4")) {
             System.out.print("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
@@ -100,7 +101,7 @@ public class GameSession {
         return intAnswer;
     }
 
-    private static void setDifficulty(int number) {
+    static void setDifficulty(int number) {
         switch (number) {
             case 1 -> {
                 difficulty = Difficulties.EASY;
@@ -117,7 +118,7 @@ public class GameSession {
         }
     }
 
-    private static void themeChoosing() {
+    static void themeChoosing() {
         displayThemeOptions();
         setTheme(choosing());
     }
@@ -131,7 +132,7 @@ public class GameSession {
         System.out.print("\nВведите номер варианта ответа без дополнительных символов: ");
     }
 
-    private static void setTheme(int number) {
+    static void setTheme(int number) {
         switch (number) {
             case 1 -> {
                 theme = Themes.FRUITS;
@@ -148,7 +149,7 @@ public class GameSession {
         }
     }
 
-    private static void attemptNumChoosing() {
+    static void attemptNumChoosing() {
         System.out.print("\nВыберите количество попыток - число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
 
         while (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
@@ -166,7 +167,7 @@ public class GameSession {
         }
     }
 
-    private static void initialization() {
+    static void initialization() {
         guessingResult = new GuessingResult(Dictionary.getRandom(difficulty, theme), attemptsNum);
     }
 
@@ -194,7 +195,7 @@ public class GameSession {
         System.out.println(HANGMAN_STAGES[(int) (MAX_ATTEMPTS * ((double) madeAttemptsNum / attemptsNum))]);
     }
 
-    private static char getUserInput() {
+    static char getUserInput() {
         System.out.print("\nВведите русскую букву в любом регистре или слово: ");
         String strAnswer = input.nextLine();
 
@@ -206,7 +207,7 @@ public class GameSession {
         return Character.toLowerCase(strAnswer.charAt(0));
     }
 
-    private static boolean isCyrillicLetter(char c) {
+    static boolean isCyrillicLetter(char c) {
         return (c >= 'а' && c <= 'я') || (c >= 'А' && c <= 'Я') || c == 'ё' || c == 'Ё';
     }
 
