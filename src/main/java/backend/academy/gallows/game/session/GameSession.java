@@ -4,11 +4,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lombok.Getter;
 import backend.academy.gallows.dictionary.Dictionary;
 import backend.academy.gallows.dictionary.Difficulties;
 import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
+import lombok.Getter;
 
 public final class GameSession {
     private static final Scanner INPUT = new Scanner(System.in);
