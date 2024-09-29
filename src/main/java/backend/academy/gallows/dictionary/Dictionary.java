@@ -10,8 +10,8 @@ final public class Dictionary {
         new EnumMap<>(Difficulties.class);
     private static final Random RANDOM = new Random();
 
-    private static final String HERB_HINT_DESCRIPTION = "ароматная зелень, часто используется для украшения и приправы блюд.";
-
+    private static final String HERB_HINT_DESCRIPTION =
+        "ароматная зелень, часто используется для украшения и приправы блюд.";
 
     static {
         initializeDictionary();
