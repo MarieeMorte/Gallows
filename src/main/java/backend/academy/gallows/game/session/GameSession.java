@@ -37,7 +37,10 @@ public final class GameSession {
 
     private static final int FIRST_OPTION = 1;
     private static final int SECOND_OPTION = 2;
+    private static final int COUNT_OPTIONS = 3;
     private static final int RANDOM_OPTION = 4;
+
+    private static final int HINT_THRESHOLD = 4;
 
     @Getter private static Difficulties difficulty;
     @Getter private static Themes theme;
@@ -132,7 +135,7 @@ public final class GameSession {
 
         int intAnswer = Integer.parseInt(strAnswer);
         if (intAnswer == RANDOM_OPTION) {
-            intAnswer = 1 + RANDOM.nextInt(3);
+            intAnswer = 1 + RANDOM.nextInt(COUNT_OPTIONS);
         }
         return intAnswer;
     }
@@ -223,7 +226,7 @@ public final class GameSession {
         displayHangman();
         LOGGER.log(Level.INFO, "Слово: ");
         guessingResult.displayResponse();
-        if (attemptsNum - madeAttemptsNum < 4) {
+        if (attemptsNum - madeAttemptsNum < HINT_THRESHOLD) {
             LOGGER.log(Level.INFO, "Подсказка: " + guessingResult.hint());
         }
     }
