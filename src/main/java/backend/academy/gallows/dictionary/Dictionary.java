@@ -36,14 +36,6 @@ public class Dictionary {
         dictionary.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
     }
 
-    public static Difficulties getRandomDifficulty() {
-        return Difficulties.values()[random.nextInt(Difficulties.values().length)];
-    }
-
-    public static Themes getRandomTheme() {
-        return Themes.values()[random.nextInt(Themes.values().length)];
-    }
-
     public static String getRandomWord(Difficulties difficult, Themes theme) {
         List<String> words = dictionary.get(difficult).get(theme);
         int index = random.nextInt(words.size());
