@@ -1,13 +1,13 @@
 package backend.academy.gallows.game.session;
 
-import java.util.Random;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import backend.academy.gallows.dictionary.Dictionary;
 import backend.academy.gallows.dictionary.Difficulties;
 import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.Getter;
 
 public final class GameSession {
@@ -187,7 +187,7 @@ public final class GameSession {
 
     static void attemptNumChoosing() {
         LOGGER.log(Level.INFO,
-            "\nВыберите количество попыток - число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
+            "\nВыберите количество попыток - число от " + MIN_ATTEMPTS + TO_STRING + MAX_ATTEMPTS + ": ");
 
         while (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
             String strAnswer = INPUT.nextLine();
