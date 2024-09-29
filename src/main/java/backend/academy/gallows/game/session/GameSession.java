@@ -58,6 +58,7 @@ public final class GameSession {
      * Главный метод для запуска игры "Виселица".
      * Этот метод инициализирует игру, запрашивает настройки у игрока и запускает игровой процесс.
      */
+    @SuppressWarnings("UncommentedMain")
     public static void main(String[] args) {
         // Запуск игры "Виселица"
 
