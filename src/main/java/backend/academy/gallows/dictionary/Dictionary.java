@@ -21,7 +21,7 @@ final public class Dictionary {
         throw new UnsupportedOperationException("Utility class");
     }
 
-    private static void initializeDictionary() {
+    static void initializeDictionary() {
         addWords(Difficulties.EASY, Themes.FRUITS,
             List.of(new WordWithHint("банан", "жёлтый тропический фрукт, который любят обезьяны."),
                 new WordWithHint("груша", "сладкий фрукт с характерной формой, часто зелёного или жёлтого цвета."),
@@ -107,7 +107,7 @@ final public class Dictionary {
                     "хрустящий овощ с характерным вкусом, часто добавляется в салаты и супы.")));
     }
 
-    private static void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
+    static void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
         DICTIONARY.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
     }
 
