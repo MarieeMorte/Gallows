@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class Dictionary {
+final public class Dictionary {
     private static final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> dictionary =
         new EnumMap<>(Difficulties.class);
     private static final Random random = new Random();
 
     static {
         initializeDictionary();
+    }
+
+    private Dictionary() {
+        throw new UnsupportedOperationException("Utility class");
     }
 
     private static void initializeDictionary() {
