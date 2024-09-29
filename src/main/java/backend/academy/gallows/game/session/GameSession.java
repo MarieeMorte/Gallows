@@ -8,13 +8,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GameSession {
-    private static final Scanner input = new Scanner(System.in);
-    private static final Random random = new Random();
-    private static Difficulties difficulty;
-    private static Themes theme;
-    private static int attemptsNum = -1;
-    private static int madeAttemptsNum = 0;
-    private static GuessingResult guessingResult;
     private static final int MIN_ATTEMPTS = 1;
     private static final int MAX_ATTEMPTS = 9;
     private static final String[] HANGMAN_STAGES = {
@@ -29,6 +22,14 @@ public class GameSession {
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |\n   |\n   |\n—————————",
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"
     };
+
+    private static final Scanner input = new Scanner(System.in);
+    private static final Random random = new Random();
+    private static Difficulties difficulty;
+    private static Themes theme;
+    private static int attemptsNum = -1;
+    private static int madeAttemptsNum = 0;
+    private static GuessingResult guessingResult;
 
     public static void main(String[] args) {
         greeting();
