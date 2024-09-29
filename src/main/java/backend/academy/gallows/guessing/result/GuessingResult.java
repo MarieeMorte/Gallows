@@ -51,7 +51,7 @@ public class GuessingResult {
     }
 
     public boolean isGameOver() {
-        return !isGameWin() && !isGameLoss();
+        return isGameWin() || isGameLoss();
     }
 
 }
