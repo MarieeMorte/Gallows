@@ -30,6 +30,7 @@ public class GameSession {
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |\n   |\n   |\n—————————",
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"
     };
+    private static final String ENTER_OPTION_PROMPT = "\nВведите номер варианта ответа без дополнительных символов: ";
     @Getter private static Difficulties difficulty;
     @Getter private static Themes theme;
     @Getter private static int attemptsNum = -1;
@@ -72,7 +73,7 @@ public class GameSession {
         LOGGER.log(Level.INFO, "\nЗнаете ли Вы правила игры?");
         LOGGER.log(Level.INFO, "1. Да;");
         LOGGER.log(Level.INFO, "2. Нет.");
-        LOGGER.log(Level.INFO, "\nВведите номер варианта ответа без дополнительных символов: ");
+        LOGGER.log(Level.INFO, ENTER_OPTION_PROMPT);
 
         String strAnswer = INPUT.nextLine();
 
@@ -105,7 +106,7 @@ public class GameSession {
         LOGGER.log(Level.INFO, "2. Средний;");
         LOGGER.log(Level.INFO, "3. Сложный;");
         LOGGER.log(Level.INFO, "4. Рандомный.");
-        LOGGER.log(Level.INFO, "\nВведите номер варианта ответа без дополнительных символов: ");
+        LOGGER.log(Level.INFO, ENTER_OPTION_PROMPT);
     }
 
     static int choosing() {
@@ -150,7 +151,7 @@ public class GameSession {
         LOGGER.log(Level.INFO, "2. Овощи;");
         LOGGER.log(Level.INFO, "3. Ягоды;");
         LOGGER.log(Level.INFO, "4. Рандомная.");
-        LOGGER.log(Level.INFO, "\nВведите номер варианта ответа без дополнительных символов: ");
+        LOGGER.log(Level.INFO, ENTER_OPTION_PROMPT);
     }
 
     static void setTheme(int number) {
