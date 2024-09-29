@@ -26,8 +26,8 @@ public class GameSession {
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"
     };
 
-    private static final Scanner input = new Scanner(System.in);
-    private static final Random random = new Random();
+    private static final Scanner INPUT = new Scanner(System.in);
+    private static final Random RANDOM = new Random();
     @Getter private static Difficulties difficulty;
     @Getter private static Themes theme;
     @Getter private static int attemptsNum = -1;
@@ -59,11 +59,11 @@ public class GameSession {
         System.out.println("2. Нет.");
         System.out.print("\nВведите номер варианта ответа без дополнительных символов: ");
 
-        String strAnswer = input.nextLine();
+        String strAnswer = INPUT.nextLine();
 
         while (!strAnswer.equals("1") && !strAnswer.equals("2")) {
             System.out.print("\nОтвет не распознан. Введите \"1\" или \"2\" (без кавычек): ");
-            strAnswer = input.nextLine();
+            strAnswer = INPUT.nextLine();
         }
 
         if (strAnswer.equals("2")) {
@@ -94,15 +94,15 @@ public class GameSession {
     }
 
     static int choosing() {
-        String strAnswer = input.nextLine();
+        String strAnswer = INPUT.nextLine();
         while (!strAnswer.equals("1") && !strAnswer.equals("2") && !strAnswer.equals("3") && !strAnswer.equals("4")) {
             System.out.print("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
-            strAnswer = input.nextLine();
+            strAnswer = INPUT.nextLine();
         }
 
         int intAnswer = Integer.parseInt(strAnswer);
         if (intAnswer == 4) {
-            intAnswer = 1 + random.nextInt(3);
+            intAnswer = 1 + RANDOM.nextInt(3);
         }
         return intAnswer;
     }
@@ -159,7 +159,7 @@ public class GameSession {
         System.out.print("\nВыберите количество попыток - число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
 
         while (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
-            String strAnswer = input.nextLine();
+            String strAnswer = INPUT.nextLine();
             try {
                 attemptsNum = Integer.parseInt(strAnswer);
                 if (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
@@ -203,11 +203,11 @@ public class GameSession {
 
     static char getUserInput() {
         System.out.print("\nВведите русскую букву в любом регистре или слово: ");
-        String strAnswer = input.nextLine();
+        String strAnswer = INPUT.nextLine();
 
         while (strAnswer.length() != 1 || !isCyrillicLetter(strAnswer.charAt(0))) {
             System.out.print("\nВы должны ввести одну русскую букву в любом регистре: ");
-            strAnswer = input.nextLine();
+            strAnswer = INPUT.nextLine();
         }
 
         return Character.toLowerCase(strAnswer.charAt(0));
