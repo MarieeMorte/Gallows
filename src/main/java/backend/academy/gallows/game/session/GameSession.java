@@ -1,12 +1,14 @@
 package backend.academy.gallows.game.session;
 
+import java.util.Random;
+import java.util.Scanner;
+
+import lombok.Getter;
+
 import backend.academy.gallows.dictionary.Dictionary;
 import backend.academy.gallows.dictionary.Difficulties;
 import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
-import lombok.Getter;
-import java.util.Random;
-import java.util.Scanner;
 
 public class GameSession {
     private static final int MIN_ATTEMPTS = 1;
