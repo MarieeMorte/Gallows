@@ -62,8 +62,8 @@ public class GameSession {
     private static void explainGameRules() {
         System.out.println(
             "\nЭто игра, в которой игрок пытается угадать загаданное слово, вводя буквы по одной за раз.");
-        System.out.println("Вы можете выбрать уровень сложности и категорию слова, которое будете угадывать.");
-        System.out.println("Количество попыток ограничено!");
+        System.out.println(
+            "Вы можете выбрать уровень сложности, категорию слова, которое будете угадывать, и количество попыток.");
         System.out.println("За каждую неверную догадку визуализируется часть виселицы и фигурки висельника.");
     }
 
@@ -81,6 +81,20 @@ public class GameSession {
         System.out.print("\nВведите номер варианта ответа без дополнительных символов: ");
     }
 
+    private static int choosing() {
+        String strAnswer = input.nextLine();
+        while (!strAnswer.equals("1") && !strAnswer.equals("2") && !strAnswer.equals("3") && !strAnswer.equals("4")) {
+            System.out.print("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
+            strAnswer = input.nextLine();
+        }
+
+        int intAnswer = Integer.parseInt(strAnswer);
+        if (intAnswer == 4) {
+            intAnswer = 1 + random.nextInt(3);
+        }
+        return intAnswer;
+    }
+
     private static void setDifficulty(int number) {
         switch (number) {
             case 1 -> {
@@ -96,20 +110,6 @@ public class GameSession {
                 System.out.println("\nВыбранный уровень сложности: сложный.");
             }
         }
-    }
-
-    private static int choosing() {
-        String strAnswer = input.nextLine();
-        while (!strAnswer.equals("1") && !strAnswer.equals("2") && !strAnswer.equals("3") && !strAnswer.equals("4")) {
-            System.out.print("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
-            strAnswer = input.nextLine();
-        }
-
-        int intAnswer = Integer.parseInt(strAnswer);
-        if (intAnswer == 4) {
-            intAnswer = 1 + random.nextInt(3);
-        }
-        return intAnswer;
     }
 
     private static void themeChoosing() {
