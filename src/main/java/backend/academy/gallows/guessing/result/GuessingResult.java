@@ -4,12 +4,12 @@ import backend.academy.gallows.dictionary.WordWithHint;
 import lombok.Getter;
 import java.util.Arrays;
 
-public class GuessingResult {
-    @Getter private String word;
-    @Getter private String hint;
-    @Getter private char[] response;
+@Getter public class GuessingResult {
+    private final String word;
+    private final String hint;
+    private final char[] response;
     private final int attemptsNum;
-    @Getter private int madeAttemptsNum;
+    private int madeAttemptsNum;
 
     public GuessingResult(WordWithHint wordWithHint, int attemptsNum) {
         this.word = wordWithHint.word();
