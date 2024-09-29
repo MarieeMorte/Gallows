@@ -10,7 +10,7 @@ import backend.academy.gallows.dictionary.Difficulties;
 import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
 
-public class GameSession {
+public final class GameSession {
     private static final Scanner INPUT = new Scanner(System.in);
     private static final Logger LOGGER = Logger.getLogger(GameSession.class.getName());
     private static final Random RANDOM = new Random();
