@@ -29,6 +29,8 @@ public final class GameSession {
     };
 
     private static final String ENTER_OPTION_PROMPT = "\nВведите номер варианта ответа без дополнительных символов: ";
+    private static final String TO_STRING = " до ";
+    private static final String UNRECOGNIZED_RESPONSE_PROMPT = "\nОтвет не распознан. Введите число от ";
 
     private static final int MIN_ATTEMPTS = 1;
     private static final int MAX_ATTEMPTS = 9;
@@ -193,11 +195,11 @@ public final class GameSession {
                 attemptsNum = Integer.parseInt(strAnswer);
                 if (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
                     LOGGER.log(Level.WARNING,
-                        "\nОтвет не распознан. Введите число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
+                        UNRECOGNIZED_RESPONSE_PROMPT + MIN_ATTEMPTS + TO_STRING + MAX_ATTEMPTS + ": ");
                 }
             } catch (NumberFormatException e) {
                 LOGGER.log(Level.WARNING,
-                    "\nОтвет не распознан. Введите число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
+                    UNRECOGNIZED_RESPONSE_PROMPT + MIN_ATTEMPTS + TO_STRING + MAX_ATTEMPTS + ": ");
             }
         }
     }
