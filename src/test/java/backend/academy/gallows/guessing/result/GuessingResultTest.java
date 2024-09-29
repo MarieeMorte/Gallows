@@ -105,7 +105,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void testUpdateResponseIgnoresMultipleLetters() {
+    void testUpdateResponseNotIgnoresMultipleLetters() {
         // Act
         guessingResult.updateResponse('а'); // правильная буква
         guessingResult.updateResponse('к'); // неправильная буква
