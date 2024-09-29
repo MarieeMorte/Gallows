@@ -31,6 +31,7 @@ public class GuessingResult {
     }
 
     public void displayResponse() {
+        System.out.print("Слово: ");
         for (char symbol : response) {
             System.out.print(symbol);
         }
