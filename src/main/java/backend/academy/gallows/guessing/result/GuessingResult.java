@@ -2,9 +2,14 @@ package backend.academy.gallows.guessing.result;
 
 import backend.academy.gallows.dictionary.WordWithHint;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.Getter;
 
-@Getter public class GuessingResult {
+@Getter
+public class GuessingResult {
+    private static final Logger LOGGER = Logger.getLogger(GuessingResult.class.getName());
+
     private final String word;
     private final String hint;
     private final char[] response;
@@ -35,10 +40,11 @@ import lombok.Getter;
     }
 
     public void displayResponse() {
+        StringBuilder responseString = new StringBuilder();
         for (char symbol : response) {
-            System.out.print(symbol);
+            responseString.append(symbol);
         }
-        System.out.println();
+        LOGGER.log(Level.INFO, responseString.toString());
     }
 
     public boolean isGameWin() {
