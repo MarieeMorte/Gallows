@@ -2,6 +2,8 @@ package backend.academy.gallows.game.session;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import lombok.Getter;
 
@@ -11,6 +13,9 @@ import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
 
 public class GameSession {
+    private static final Scanner INPUT = new Scanner(System.in);
+    private static final Logger LOGGER = Logger.getLogger(GameSession.class.getName());
+    private static final Random RANDOM = new Random();
     private static final int MIN_ATTEMPTS = 1;
     private static final int MAX_ATTEMPTS = 9;
     private static final String[] HANGMAN_STAGES = {
@@ -25,9 +30,6 @@ public class GameSession {
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |\n   |\n   |\n—————————",
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"
     };
-
-    private static final Scanner INPUT = new Scanner(System.in);
-    private static final Random RANDOM = new Random();
     @Getter private static Difficulties difficulty;
     @Getter private static Themes theme;
     @Getter private static int attemptsNum = -1;
@@ -61,21 +63,21 @@ public class GameSession {
     }
 
     static void greeting() {
-        System.out.println("Добро пожаловать в консольную \"Виселицу\"!");
+        LOGGER.log(Level.INFO, "Добро пожаловать в консольную \"Виселицу\"!");
         displayGameRules();
-        System.out.println("\nУдачной игры!");
+        LOGGER.log(Level.INFO, "\nУдачной игры!");
     }
 
     static void displayGameRules() {
-        System.out.println("\nЗнаете ли Вы правила игры?");
-        System.out.println("1. Да;");
-        System.out.println("2. Нет.");
-        System.out.print("\nВведите номер варианта ответа без дополнительных символов: ");
+        LOGGER.log(Level.INFO, "\nЗнаете ли Вы правила игры?");
+        LOGGER.log(Level.INFO, "1. Да;");
+        LOGGER.log(Level.INFO, "2. Нет.");
+        LOGGER.log(Level.INFO, "\nВведите номер варианта ответа без дополнительных символов: ");
 
         String strAnswer = INPUT.nextLine();
 
         while (!strAnswer.equals("1") && !strAnswer.equals("2")) {
-            System.out.print("\nОтвет не распознан. Введите \"1\" или \"2\" (без кавычек): ");
+            LOGGER.log(Level.WARNING, "\nОтвет не распознан. Введите \"1\" или \"2\" (без кавычек): ");
             strAnswer = INPUT.nextLine();
         }
 
@@ -85,11 +87,11 @@ public class GameSession {
     }
 
     private static void explainGameRules() {
-        System.out.println(
+        LOGGER.log(Level.INFO,
             "\nЭто игра, в которой игрок пытается угадать загаданное слово, вводя буквы по одной за раз.");
-        System.out.println(
+        LOGGER.log(Level.INFO,
             "Вы можете выбрать уровень сложности, категорию слова, которое будете угадывать, и количество попыток.");
-        System.out.println("За каждую неверную догадку визуализируется часть виселицы и фигурки висельника.");
+        LOGGER.log(Level.INFO, "За каждую неверную догадку визуализируется часть виселицы и фигурки висельника.");
     }
 
     static void difficultyLevelChoosing() {
@@ -98,18 +100,18 @@ public class GameSession {
     }
 
     private static void displayDifficultyOptions() {
-        System.out.println("\nВыберите уровень сложности игры:");
-        System.out.println("1. Простой;");
-        System.out.println("2. Средний;");
-        System.out.println("3. Сложный;");
-        System.out.println("4. Рандомный.");
-        System.out.print("\nВведите номер варианта ответа без дополнительных символов: ");
+        LOGGER.log(Level.INFO, "\nВыберите уровень сложности игры:");
+        LOGGER.log(Level.INFO, "1. Простой;");
+        LOGGER.log(Level.INFO, "2. Средний;");
+        LOGGER.log(Level.INFO, "3. Сложный;");
+        LOGGER.log(Level.INFO, "4. Рандомный.");
+        LOGGER.log(Level.INFO, "\nВведите номер варианта ответа без дополнительных символов: ");
     }
 
     static int choosing() {
         String strAnswer = INPUT.nextLine();
         while (!strAnswer.equals("1") && !strAnswer.equals("2") && !strAnswer.equals("3") && !strAnswer.equals("4")) {
-            System.out.print("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
+            LOGGER.log(Level.WARNING, "\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
             strAnswer = INPUT.nextLine();
         }
 
@@ -124,15 +126,15 @@ public class GameSession {
         switch (number) {
             case 1 -> {
                 difficulty = Difficulties.EASY;
-                System.out.println("\nВыбранный уровень сложности: простой.");
+                LOGGER.log(Level.INFO, "\nВыбранный уровень сложности: простой.");
             }
             case 2 -> {
                 difficulty = Difficulties.MEDIUM;
-                System.out.println("\nВыбранный уровень сложности: средний.");
+                LOGGER.log(Level.INFO, "\nВыбранный уровень сложности: средний.");
             }
             default -> {
                 difficulty = Difficulties.HARD;
-                System.out.println("\nВыбранный уровень сложности: сложный.");
+                LOGGER.log(Level.INFO, "\nВыбранный уровень сложности: сложный.");
             }
         }
     }
@@ -143,44 +145,45 @@ public class GameSession {
     }
 
     private static void displayThemeOptions() {
-        System.out.println("\nВыберите тему:");
-        System.out.println("1. Фрукты;");
-        System.out.println("2. Овощи;");
-        System.out.println("3. Ягоды;");
-        System.out.println("4. Рандомная.");
-        System.out.print("\nВведите номер варианта ответа без дополнительных символов: ");
+        LOGGER.log(Level.INFO, "\nВыберите тему:");
+        LOGGER.log(Level.INFO, "1. Фрукты;");
+        LOGGER.log(Level.INFO, "2. Овощи;");
+        LOGGER.log(Level.INFO, "3. Ягоды;");
+        LOGGER.log(Level.INFO, "4. Рандомная.");
+        LOGGER.log(Level.INFO, "\nВведите номер варианта ответа без дополнительных символов: ");
     }
 
     static void setTheme(int number) {
         switch (number) {
             case 1 -> {
                 theme = Themes.FRUITS;
-                System.out.println("\nВыбранная тема: фрукты.");
+                LOGGER.log(Level.INFO, "\nВыбранная тема: фрукты.");
             }
             case 2 -> {
                 theme = Themes.BERRIES;
-                System.out.println("\nВыбранная тема: ягоды.");
+                LOGGER.log(Level.INFO, "\nВыбранная тема: ягоды.");
             }
             default -> {
                 theme = Themes.VEGETABLES;
-                System.out.println("\nВыбранная тема: овощи.");
+                LOGGER.log(Level.INFO, "\nВыбранная тема: овощи.");
             }
         }
     }
 
     static void attemptNumChoosing() {
-        System.out.print("\nВыберите количество попыток - число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
+        LOGGER.log(Level.INFO,
+            "\nВыберите количество попыток - число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
 
         while (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
             String strAnswer = INPUT.nextLine();
             try {
                 attemptsNum = Integer.parseInt(strAnswer);
                 if (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
-                    System.out.print(
+                    LOGGER.log(Level.WARNING,
                         "\nОтвет не распознан. Введите число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
                 }
             } catch (NumberFormatException e) {
-                System.out.print(
+                LOGGER.log(Level.WARNING,
                     "\nОтвет не распознан. Введите число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
             }
         }
@@ -201,25 +204,25 @@ public class GameSession {
     }
 
     private static void displayGameStatus() {
-        System.out.println("\nКоличество оставшихся попыток: " + (attemptsNum - madeAttemptsNum));
+        LOGGER.log(Level.INFO, "\nКоличество оставшихся попыток: " + (attemptsNum - madeAttemptsNum));
         displayHangman();
-        System.out.print("Слово: ");
+        LOGGER.log(Level.INFO, "Слово: ");
         guessingResult.displayResponse();
         if (attemptsNum - madeAttemptsNum < 4) {
-            System.out.println("Подсказка: " + guessingResult.hint());
+            LOGGER.log(Level.INFO, "Подсказка: " + guessingResult.hint());
         }
     }
 
     private static void displayHangman() {
-        System.out.println(HANGMAN_STAGES[(int) (MAX_ATTEMPTS * ((double) madeAttemptsNum / attemptsNum))]);
+        LOGGER.log(Level.INFO, HANGMAN_STAGES[(int) (MAX_ATTEMPTS * ((double) madeAttemptsNum / attemptsNum))]);
     }
 
     static char getUserInput() {
-        System.out.print("\nВведите русскую букву в любом регистре или слово: ");
+        LOGGER.log(Level.INFO, "\nВведите русскую букву в любом регистре или слово: ");
         String strAnswer = INPUT.nextLine();
 
         while (strAnswer.length() != 1 || !isCyrillicLetter(strAnswer.charAt(0))) {
-            System.out.print("\nВы должны ввести одну русскую букву в любом регистре: ");
+            LOGGER.log(Level.WARNING, "\nВы должны ввести одну русскую букву в любом регистре: ");
             strAnswer = INPUT.nextLine();
         }
 
@@ -232,12 +235,12 @@ public class GameSession {
 
     private static void displayGameOutcome() {
         if (guessingResult.isGameWin()) {
-            System.out.print("\nВы выиграли! Загаданное слово: ");
+            LOGGER.log(Level.INFO, "\nВы выиграли! Загаданное слово: ");
             guessingResult.displayResponse();
         } else {
-            System.out.println("\nВы проиграли!");
+            LOGGER.log(Level.INFO, "\nВы проиграли!");
             displayHangman();
-            System.out.println("Загаданное слово: " + guessingResult.word());
+            LOGGER.log(Level.INFO, "Загаданное слово: " + guessingResult.word());
         }
     }
 }
