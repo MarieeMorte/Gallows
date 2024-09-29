@@ -1,16 +1,20 @@
 package backend.academy.gallows.guessing.result;
 
+import backend.academy.gallows.dictionary.WordWithHint;
 import lombok.Getter;
 import java.util.Arrays;
 
 public class GuessingResult {
     @Getter private String word;
+    @Getter private String hint;
     @Getter private char[] response;
     private final int attemptsNum;
     @Getter private int madeAttemptsNum;
 
-    public GuessingResult(String word, int attemptsNum) {
-        this.word = word;
+    public GuessingResult(WordWithHint wordWithHint, int attemptsNum) {
+        this.word = wordWithHint.word();
+        this.hint = wordWithHint.hint();
+
         response = new char[word.length()];
         Arrays.fill(response, '_');
 

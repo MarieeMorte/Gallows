@@ -167,7 +167,7 @@ public class GameSession {
     }
 
     private static void initialization() {
-        guessingResult = new GuessingResult(Dictionary.getRandomWord(difficulty, theme), attemptsNum);
+        guessingResult = new GuessingResult(Dictionary.getRandom(difficulty, theme), attemptsNum);
     }
 
     private static void game() {
@@ -185,6 +185,9 @@ public class GameSession {
         displayHangman();
         System.out.print("Слово: ");
         guessingResult.displayResponse();
+        if (attemptsNum - madeAttemptsNum < 4) {
+            System.out.println("Подсказка: " + guessingResult.hint());
+        }
     }
 
     private static void displayHangman() {
@@ -192,7 +195,7 @@ public class GameSession {
     }
 
     private static char getUserInput() {
-        System.out.print("\nВведите русскую букву в любом регистре: ");
+        System.out.print("\nВведите русскую букву в любом регистре или слово: ");
         String strAnswer = input.nextLine();
 
         while (strAnswer.length() != 1 || !isCyrillicLetter(strAnswer.charAt(0))) {
