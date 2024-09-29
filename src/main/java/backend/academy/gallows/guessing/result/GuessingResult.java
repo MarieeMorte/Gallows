@@ -30,6 +30,13 @@ public class GuessingResult {
         }
     }
 
+    public void displayResponse() {
+        for (char symbol : response) {
+            System.out.print(symbol);
+        }
+        System.out.println();
+    }
+
     public boolean isGameWin() {
         for (char symbol : response) {
             if (symbol == '_') {
