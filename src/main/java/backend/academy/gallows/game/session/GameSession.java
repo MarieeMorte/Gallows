@@ -12,10 +12,9 @@ import backend.academy.gallows.guessing.result.GuessingResult;
 
 public final class GameSession {
     private static final Scanner INPUT = new Scanner(System.in);
-    private static final Logger LOGGER = Logger.getLogger(GameSession.class.getName());
     private static final Random RANDOM = new Random();
-    private static final int MIN_ATTEMPTS = 1;
-    private static final int MAX_ATTEMPTS = 9;
+    private static final Logger LOGGER = Logger.getLogger(GameSession.class.getName());
+
     private static final String[] HANGMAN_STAGES = {
         "\n\n\n\n\n\n\n",
         "\n\n\n\n\n\n—————————",
@@ -28,11 +27,22 @@ public final class GameSession {
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |\n   |\n   |\n—————————",
         "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"
     };
+
     private static final String ENTER_OPTION_PROMPT = "\nВведите номер варианта ответа без дополнительных символов: ";
+
+    private static final int MIN_ATTEMPTS = 1;
+    private static final int MAX_ATTEMPTS = 9;
+
+    private static final int FIRST_OPTION = 1;
+    private static final int SECOND_OPTION = 2;
+    private static final int RANDOM_OPTION = 4;
+
     @Getter private static Difficulties difficulty;
     @Getter private static Themes theme;
+
     @Getter private static int attemptsNum = -1;
     @Getter private static int madeAttemptsNum = 0;
+
     @Getter private static GuessingResult guessingResult;
 
     private GameSession() {
@@ -119,7 +129,7 @@ public final class GameSession {
         }
 
         int intAnswer = Integer.parseInt(strAnswer);
-        if (intAnswer == 4) {
+        if (intAnswer == RANDOM_OPTION) {
             intAnswer = 1 + RANDOM.nextInt(3);
         }
         return intAnswer;
@@ -127,11 +137,11 @@ public final class GameSession {
 
     static void setDifficulty(int number) {
         switch (number) {
-            case 1 -> {
+            case FIRST_OPTION -> {
                 difficulty = Difficulties.EASY;
                 LOGGER.log(Level.INFO, "\nВыбранный уровень сложности: простой.");
             }
-            case 2 -> {
+            case SECOND_OPTION -> {
                 difficulty = Difficulties.MEDIUM;
                 LOGGER.log(Level.INFO, "\nВыбранный уровень сложности: средний.");
             }
@@ -158,11 +168,11 @@ public final class GameSession {
 
     static void setTheme(int number) {
         switch (number) {
-            case 1 -> {
+            case FIRST_OPTION -> {
                 theme = Themes.FRUITS;
                 LOGGER.log(Level.INFO, "\nВыбранная тема: фрукты.");
             }
-            case 2 -> {
+            case SECOND_OPTION -> {
                 theme = Themes.BERRIES;
                 LOGGER.log(Level.INFO, "\nВыбранная тема: ягоды.");
             }
