@@ -4,9 +4,9 @@ import lombok.Getter;
 import java.util.Arrays;
 
 public class GuessingResult {
-    private String word;
+    @Getter private String word;
     @Getter private char[] response;
-    private int attemptsNum;
+    private final int attemptsNum;
     @Getter private int madeAttemptsNum;
 
     public GuessingResult(String word, int attemptsNum) {
