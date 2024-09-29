@@ -12,6 +12,17 @@ public class GameSession {
     private static Difficulties difficulty;
     private static Themes theme;
     private static String word;
+    private static final String[] HANGMAN_STAGES = {
+        "\n\n\n\n\n\n—————————",
+        "\n   |\n   |\n   |\n   |\n   |\n   |\n—————————",
+        "\n   | /\n   |/\n   |\n   |\n   |\n   |\n—————————",
+        "———————————————\n   | /\n   |/\n   |\n   |\n   |\n   |\n—————————",
+        "———————————————\n   | /       |\n   |/\n   |\n   |\n   |\n   |\n—————————",
+        "———————————————\n   | /       |\n   |/        o\n   |\n   |\n   |\n   |\n—————————",
+        "———————————————\n   | /       |\n   |/        o\n   |         O\n   |\n   |\n   |\n—————————",
+        "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |\n   |\n   |\n—————————",
+        "———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"
+    };
 
     public static void main(String[] args) {
         greeting();
@@ -126,5 +137,9 @@ public class GameSession {
                 System.out.println("\nВыбранная тема: овощи.");
             }
         }
+    }
+
+    public static void displayHangman(int stage) {
+        System.out.println(HANGMAN_STAGES[stage]);
     }
 }
