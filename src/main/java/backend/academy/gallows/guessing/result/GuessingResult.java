@@ -1,10 +1,8 @@
 package backend.academy.gallows.guessing.result;
 
-import java.util.Arrays;
-
-import lombok.Getter;
-
 import backend.academy.gallows.dictionary.WordWithHint;
+import java.util.Arrays;
+import lombok.Getter;
 
 @Getter public class GuessingResult {
     private final String word;
