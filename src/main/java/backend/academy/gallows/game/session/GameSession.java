@@ -14,7 +14,8 @@ public class GameSession {
     private static Themes theme;
     private static int attemptsNum = -1;
     private static int madeAttemptsNum = 0;
-    private static final int MIN_ATTEMPTS = 0;
+    private static GuessingResult guessingResult;
+    private static final int MIN_ATTEMPTS = 1;
     private static final int MAX_ATTEMPTS = 9;
     private static final String[] HANGMAN_STAGES = {
         "\n\n\n\n\n\n\n",
@@ -34,8 +35,8 @@ public class GameSession {
         difficultyLevelChoosing();
         themeChoosing();
         attemptNumChoosing();
-
-        GuessingResult guessingResult = new GuessingResult(Dictionary.getRandomWord(difficulty, theme), attemptsNum);
+        initialization();
+        game();
     }
 
     private static void greeting() {
@@ -147,7 +148,7 @@ public class GameSession {
     }
 
     private static void attemptNumChoosing() {
-        System.out.println("\nВыберите количество попыток - число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ":");
+        System.out.print("\nВыберите количество попыток - число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
 
         while (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
             String strAnswer = input.nextLine();
@@ -162,11 +163,56 @@ public class GameSession {
                     "\nОтвет не распознан. Введите число от " + MIN_ATTEMPTS + " до " + MAX_ATTEMPTS + ": ");
             }
         }
-
-        System.out.println("\nВыбранное количество попыток: " + attemptsNum + ".");
     }
 
-    public static void displayHangman() {
+    private static void initialization() {
+        guessingResult = new GuessingResult(Dictionary.getRandomWord(difficulty, theme), attemptsNum);
+    }
+
+    private static void game() {
+        while (!guessingResult.isGameOver()) {
+            displayGameStatus();
+            char guessedLetter = getUserInput();
+            guessingResult.updateResponse(guessedLetter);
+            madeAttemptsNum = guessingResult.madeAttemptsNum();
+        }
+        displayGameOutcome();
+    }
+
+    private static void displayGameStatus() {
+        System.out.println("\nКоличество оставшихся попыток: " + (attemptsNum - madeAttemptsNum));
+        displayHangman();
+        guessingResult.displayResponse();
+    }
+
+    private static void displayHangman() {
         System.out.println(HANGMAN_STAGES[(int) (MAX_ATTEMPTS * ((double) madeAttemptsNum / attemptsNum))]);
+    }
+
+    private static char getUserInput() {
+        System.out.print("\nВведите русскую букву в любом регистре: ");
+        String strAnswer = input.nextLine();
+
+        while (strAnswer.length() != 1 || !isCyrillicLetter(strAnswer.charAt(0))) {
+            System.out.print("\nВы должны ввести одну русскую букву в любом регистре: ");
+            strAnswer = input.nextLine();
+        }
+
+        return Character.toLowerCase(strAnswer.charAt(0));
+    }
+
+    private static boolean isCyrillicLetter(char c) {
+        return (c >= 'а' && c <= 'я') || (c >= 'А' && c <= 'Я') || c == 'ё' || c == 'Ё';
+    }
+
+    private static void displayGameOutcome() {
+        if (guessingResult.isGameWin()) {
+            System.out.print("\nВы выиграли! Загаданное слово: ");
+            guessingResult.displayResponse();
+        } else {
+            System.out.println("\nВы проиграли!");
+            displayHangman();
+            System.out.println("Загаданное слово: " + guessingResult.word());
+        }
     }
 }
