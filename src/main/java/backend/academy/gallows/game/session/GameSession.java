@@ -183,6 +183,7 @@ public class GameSession {
     private static void displayGameStatus() {
         System.out.println("\nКоличество оставшихся попыток: " + (attemptsNum - madeAttemptsNum));
         displayHangman();
+        System.out.print("Слово: ");
         guessingResult.displayResponse();
     }
 
