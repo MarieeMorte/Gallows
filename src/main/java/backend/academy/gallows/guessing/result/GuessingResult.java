@@ -49,6 +49,7 @@ public class GuessingResult {
 
         message = responseString.toString();
         OUTPUT.println(message);
+        OUTPUT.flush();
     }
 
     public boolean isGameWin() {
