@@ -1,14 +1,13 @@
 package backend.academy.gallows.guessing.result;
 
 import backend.academy.gallows.dictionary.WordWithHint;
+import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lombok.Getter;
 
 @Getter
 public class GuessingResult {
-    private static final Logger LOGGER = Logger.getLogger(GuessingResult.class.getName());
+    private static final PrintWriter OUTPUT = new PrintWriter(System.out);
 
     private final String word;
     private final String hint;
@@ -49,7 +48,7 @@ public class GuessingResult {
         }
 
         message = responseString.toString();
-        LOGGER.log(Level.INFO, message);
+        OUTPUT.println(message);
     }
 
     public boolean isGameWin() {
