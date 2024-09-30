@@ -12,7 +12,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testAddEasyBerries() {
+    void expectWordFromEasyBerries_whenWordsAreAdded() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.FRUITS;
@@ -31,7 +31,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testAddEasyVegetables() {
+    void expectWordFromEasyVegetables_whenWordsAreAdded() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.VEGETABLES;
@@ -47,7 +47,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testAddHardBerries() {
+    void expectWordFromHardBerries_whenWordsAreAdded() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.BERRIES;
@@ -67,7 +67,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromEasyFruits() {
+    void expectRandomWordFromEasyFruits_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.FRUITS;
@@ -82,7 +82,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromEasyBerries() {
+    void expectRandomWordFromEasyBerries_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.BERRIES;
@@ -96,7 +96,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromEasyVegetables() {
+    void expectRandomWordFromEasyVegetables_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.VEGETABLES;
@@ -110,7 +110,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromMediumFruits() {
+    void expectRandomWordFromMediumFruits_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.MEDIUM;
         Themes theme = Themes.FRUITS;
@@ -124,7 +124,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromMediumBerries() {
+    void expectRandomWordFromMediumBerries_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.MEDIUM;
         Themes theme = Themes.BERRIES;
@@ -138,7 +138,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromMediumVegetables() {
+    void expectRandomWordFromMediumVegetables_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.MEDIUM;
         Themes theme = Themes.VEGETABLES;
@@ -153,7 +153,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromHardFruits() {
+    void expectRandomWordFromHardFruits_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.FRUITS;
@@ -167,7 +167,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromHardBerries() {
+    void expectRandomWordFromHardBerries_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.BERRIES;
@@ -181,7 +181,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void testGetRandomWordFromHardVegetables() {
+    void expectRandomWordFromHardVegetables_whenCalled() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.VEGETABLES;
