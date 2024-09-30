@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ThemesTest {
     @Test
-    void testThemesEnumValues() {
+    void expectThemesEnumValues_whenValuesAreRetrieved() {
         // Act
         Themes[] themes = Themes.values();
 

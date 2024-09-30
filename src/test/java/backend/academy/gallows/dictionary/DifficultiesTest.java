@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifficultiesTest {
     @Test
-    void testDifficultiesEnumValues() {
+    void expectDifficultiesEnumValues_whenValuesAreRetrieved() {
         // Act
         Difficulties[] difficulties = Difficulties.values();
 
