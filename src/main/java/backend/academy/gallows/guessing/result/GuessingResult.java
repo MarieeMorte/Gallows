@@ -13,8 +13,11 @@ public class GuessingResult {
     private final String word;
     private final String hint;
     private final char[] response;
+
     private final int attemptsNum;
     private int madeAttemptsNum;
+
+    private String message;
 
     public GuessingResult(WordWithHint wordWithHint, int attemptsNum) {
         this.word = wordWithHint.word();
@@ -44,7 +47,9 @@ public class GuessingResult {
         for (char symbol : response) {
             responseString.append(symbol);
         }
-        LOGGER.log(Level.INFO, responseString.toString());
+
+        message = responseString.toString();
+        LOGGER.log(Level.INFO, message);
     }
 
     public boolean isGameWin() {
