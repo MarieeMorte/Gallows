@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WordWithHintTest {
     @Test
-    void expectWordWithHintToBeCreated_whenValidParametersProvided() {
+    void givenValidParameters_whenCreatingWordWithHint_thenExpectWordWithHintToBeCreated() {
         // Arrange
         String expectedWord = "банан";
         String expectedHint = "жёлтый тропический фрукт, который любят обезьяны.";

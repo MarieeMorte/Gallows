@@ -12,7 +12,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectWordFromEasyBerries_whenDifficultyIsEasyAndThemeIsFruits() {
+    void givenEasyDifficultyAndFruitsTheme_whenAddingWords_thenExpectWordFromEasyBerries() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.FRUITS;
@@ -31,7 +31,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectWordFromEasyVegetables_whenDifficultyIsEasyAndThemeIsVegetables() {
+    void givenEasyDifficultyAndVegetablesTheme_whenAddingWords_thenExpectWordFromEasyVegetables() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.VEGETABLES;
@@ -47,7 +47,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectWordFromHardBerries_whenDifficultyIsHardAndThemeIsBerries() {
+    void givenHardDifficultyAndBerriesTheme_whenAddingWords_thenExpectWordFromHarBerries() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.BERRIES;
@@ -67,7 +67,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromEasyFruits_whenCalled() {
+    void givenEasyDifficultyAndFruitsTheme_whenRequested_thenExpectRandomWordFromEasyFruits() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.FRUITS;
@@ -82,7 +82,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromEasyBerries_whenRequested() {
+    void givenEasyDifficultyAndBerriesTheme_whenRequested_thenExpectRandomWordFromEasyBerries() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.BERRIES;
@@ -96,7 +96,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromEasyVegetables_whenRequested() {
+    void givenEasyDifficultyAndVegetablesTheme_whenRequested_thenExpectRandomWordFromEasyVegetables() {
         // Arrange
         Difficulties difficulty = Difficulties.EASY;
         Themes theme = Themes.VEGETABLES;
@@ -110,7 +110,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromMediumFruits_whenRequested() {
+    void givenMediumDifficultyAndFruitsTheme_whenRequested_thenExpectRandomWordFromMediumFruits() {
         // Arrange
         Difficulties difficulty = Difficulties.MEDIUM;
         Themes theme = Themes.FRUITS;
@@ -124,7 +124,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromMediumBerries_whenRequested() {
+    void givenMediumDifficultyAndBerriesTheme_whenRequested_thenExpectRandomWordFromMediumBerries() {
         // Arrange
         Difficulties difficulty = Difficulties.MEDIUM;
         Themes theme = Themes.BERRIES;
@@ -138,7 +138,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromMediumVegetables_whenRequested() {
+    void givenMediumDifficultyAndVegetablesTheme_whenRequested_thenExpectRandomWordFromMediumVegetables() {
         // Arrange
         Difficulties difficulty = Difficulties.MEDIUM;
         Themes theme = Themes.VEGETABLES;
@@ -153,7 +153,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromHardFruits_whenRequested() {
+    void givenHardDifficultyAndFruitsTheme_whenRequested_thenExpectRandomWordFromHardFruits() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.FRUITS;
@@ -167,7 +167,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromHardBerries_whenRequested() {
+    void givenHardDifficultyAndBerriesTheme_whenRequested_thenExpectRandomWordFromHardBerries() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.BERRIES;
@@ -181,7 +181,7 @@ public class DictionaryTest {
     }
 
     @Test
-    void expectRandomWordFromHardVegetables_whenRequested() {
+    void givenHardDifficultyAndVegetablesTheme_whenRequested_thenExpectRandomWordFromHardVegetables() {
         // Arrange
         Difficulties difficulty = Difficulties.HARD;
         Themes theme = Themes.VEGETABLES;

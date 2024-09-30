@@ -17,7 +17,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectInitialWordToBeBanana_whenGuessingResultIsCreated() {
+    void givenGuessingResultIsCreated_whenInitialWordIsRetrieved_thenExpectWordToBeBanana() {
         // Act
         String word = guessingResult.word();
 
@@ -27,7 +27,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectInitialHintToBeCorrect_whenGuessingResultIsCreated() {
+    void givenGuessingResultIsCreated_whenInitialHintIsRetrieved_thenExpectHintToBeCorrect() {
         // Act
         String hint = guessingResult.hint();
 
@@ -37,7 +37,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectInitialResponseToBeUnderscores_whenGuessingResultIsCreated() {
+    void givenGuessingResultIsCreated_whenInitialResponseIsRetrieved_thenExpectResponseToBeUnderscores() {
         // Act
         char[] response = guessingResult.response();
 
@@ -49,7 +49,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectDisplayResponseToBeCorrect_whenDisplayIsCalled() {
+    void givenGuessingResultIsCreated_whenDisplayIsCalled_thenExpectDisplayResponseToBeCorrect() {
         // Act
         guessingResult.displayResponse();
         String message = guessingResult.message();
@@ -61,19 +61,19 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectInitialAttemptsNumToBeCorrect_whenGuessingResultIsCreated() {
+    void givenGuessingResultIsCreated_whenInitialAttemptsNumIsRetrieved_thenExpectAttemptsNumToBeCorrect() {
         // Act, Assert
         assertThat(guessingResult.attemptsNum()).isEqualTo(6);
     }
 
     @Test
-    void expectInitialMadeAttemptsNumToBeZero_whenGuessingResultIsCreated() {
+    void givenGuessingResultIsCreated_whenInitialMadeAttemptsNumIsRetrieved_thenExpectMadeAttemptsNumToBeZero() {
         // Act, Assert
         assertThat(guessingResult.madeAttemptsNum()).isEqualTo(0);
     }
 
     @Test
-    void expectUpdateAndDisplayResponseToShowCorrectLetters_whenCorrectLetterIsGuessed() {
+    void givenCorrectLetterIsGuessed_whenResponseIsUpdated_thenExpectCorrectLettersToBeShown() {
         // Act
         guessingResult.updateResponse('а');
         guessingResult.displayResponse();
@@ -86,7 +86,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectUpdateMadeAttemptsNum_whenIncorrectLetterIsGuessed() {
+    void givenIncorrectLetterIsGuessed_whenResponseIsUpdated_thenExpectMadeAttemptsNumToBeUpdated() {
         // Act
         guessingResult.updateResponse('в');
         guessingResult.displayResponse();
@@ -99,7 +99,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectGameToBeWon_whenAllLettersAreGuessed() {
+    void givenAllLettersAreGuessed_whenCheckingWinCondition_thenExpectGameToBeWon() {
         // Arrange
         guessingResult.updateResponse('а');
         guessingResult.updateResponse('б');
@@ -113,7 +113,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectGameToNotBeWon_whenNotAllLettersAreGuessed() {
+    void givenNotAllLettersAreGuessed_whenCheckingWinCondition_thenExpectGameToNotBeWon() {
         // Arrange
         guessingResult.updateResponse('в');
         guessingResult.updateResponse('г');
@@ -130,7 +130,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectGameToBeLost_whenMaxAttemptsReached() {
+    void givenMaxAttemptsReached_whenCheckingLossCondition_thenExpectGameToBeLost() {
         // Arrange
         guessingResult.updateResponse('в');
         guessingResult.updateResponse('г');
@@ -147,7 +147,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectGameToNotBeLost_whenAttemptsAreStillAvailable() {
+    void givenAttemptsAreStillAvailable_whenCheckingLossCondition_thenExpectGameToNotBeLost() {
         // Arrange
         guessingResult.updateResponse('а');
         guessingResult.updateResponse('б');
@@ -161,7 +161,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectGameToBeOver_whenGameIsWon() {
+    void givenGameIsWon_whenCheckingGameOverCondition_thenExpectGameToBeOver() {
         // Arrange
         guessingResult.updateResponse('б');
         guessingResult.updateResponse('а');
@@ -175,7 +175,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectGameToBeOver_whenGameIsLost() {
+    void givenGameIsLost_whenCheckingGameOverCondition_thenExpectGameToBeOver() {
         /// Arrange
         guessingResult.updateResponse('в');
         guessingResult.updateResponse('г');
@@ -192,7 +192,7 @@ public class GuessingResultTest {
     }
 
     @Test
-    void expectGameToNotBeOver_whenAttemptsRemaining() {
+    void givenAttemptsRemaining_whenCheckingGameOverCondition_thenExpectGameToNotBeOver() {
         // Arrange
         guessingResult.updateResponse('а');
         guessingResult.updateResponse('б');
