@@ -48,7 +48,7 @@ public final class GameSession {
     @Getter private static int attemptsNum = -1;
     @Getter private static int madeAttemptsNum = 0;
 
-    @Getter private static String message;
+    @Getter static String message;
 
     private GameSession() {
         throw new UnsupportedOperationException("Utility class");
