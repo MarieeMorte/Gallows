@@ -34,9 +34,9 @@ import lombok.Getter;
     private Difficulties difficulty;
     private Themes theme;
     private GuessingResult guessingResult;
-    int attemptsNum;
-    int madeAttemptsNum;
-    String message;
+    private int attemptsNum;
+    private int madeAttemptsNum;
+    private String message;
 
     public GameSession(Scanner input, PrintWriter output) {
         this.dictionary = new Dictionary();
