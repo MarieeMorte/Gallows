@@ -13,13 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameSessionTest {
     private Scanner mockInput;
-    private PrintWriter mockOutput;
     private GameSession gameSession;
 
     @BeforeEach
     void setUp() {
         mockInput = Mockito.mock(Scanner.class);
-        mockOutput = Mockito.mock(PrintWriter.class);
+        PrintWriter mockOutput = Mockito.mock(PrintWriter.class);
         gameSession = new GameSession(mockInput, mockOutput);
     }
 
