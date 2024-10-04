@@ -7,8 +7,6 @@ import lombok.Getter;
 
 @Getter
 public class GuessingResult {
-    private static final PrintWriter OUTPUT = new PrintWriter(System.out);
-
     private final String word;
     private final String hint;
     private final char[] response;
@@ -16,9 +14,9 @@ public class GuessingResult {
     private final int attemptsNum;
     private int madeAttemptsNum;
 
-    private String message;
+    private final PrintWriter output;
 
-    public GuessingResult(WordWithHint wordWithHint, int attemptsNum) {
+    public GuessingResult(WordWithHint wordWithHint, int attemptsNum, PrintWriter output) {
         this.word = wordWithHint.word();
         this.hint = wordWithHint.hint();
 
@@ -27,6 +25,12 @@ public class GuessingResult {
 
         this.attemptsNum = attemptsNum;
         madeAttemptsNum = 0;
+
+        this.output = output;
+    }
+
+    public String getResponse() {
+        return new String(response);
     }
 
     public void updateResponse(char letter) {
@@ -42,23 +46,13 @@ public class GuessingResult {
     }
 
     public void displayResponse() {
-        StringBuilder responseString = new StringBuilder();
-        for (char symbol : response) {
-            responseString.append(symbol);
-        }
-
-        message = responseString.toString();
-        OUTPUT.println(message);
-        OUTPUT.flush();
+        String message = getResponse();
+        output.println(message);
+        output.flush();
     }
 
     public boolean isGameWin() {
-        for (char symbol : response) {
-            if (symbol == '_') {
-                return false;
-            }
-        }
-        return true;
+        return !new String(response).contains("_");
     }
 
     public boolean isGameLoss() {
