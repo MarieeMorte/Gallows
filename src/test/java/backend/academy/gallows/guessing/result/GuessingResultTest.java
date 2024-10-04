@@ -3,17 +3,21 @@ package backend.academy.gallows.guessing.result;
 import backend.academy.gallows.dictionary.WordWithHint;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GuessingResultTest {
-    private static final WordWithHint BANANA_WITH_HINT =
+    private final WordWithHint BANANA_WITH_HINT =
         new WordWithHint("банан", "жёлтый тропический фрукт, который любят обезьяны.");
-    private static GuessingResult guessingResult;
+    private GuessingResult guessingResult;
+    private StringWriter stringWriter;
 
     @BeforeEach
     void setUp() {
         // Arrange
-        guessingResult = new GuessingResult(BANANA_WITH_HINT, 6);
+        stringWriter = new StringWriter();
+        guessingResult = new GuessingResult(BANANA_WITH_HINT, 6, new PrintWriter(stringWriter));
     }
 
     @Test
@@ -52,7 +56,7 @@ public class GuessingResultTest {
     void givenGuessingResultIsCreated_whenDisplayIsCalled_thenExpectDisplayResponseToBeCorrect() {
         // Act
         guessingResult.displayResponse();
-        String message = guessingResult.message();
+        String message = stringWriter.toString().trim();
 
         // Assert
         assertThat(message).isNotNull();
@@ -77,7 +81,7 @@ public class GuessingResultTest {
         // Act
         guessingResult.updateResponse('а');
         guessingResult.displayResponse();
-        String message = guessingResult.message();
+        String message = stringWriter.toString().trim();
 
         // Assert
         assertThat(guessingResult.response()).containsExactly('_', 'а', '_', 'а', '_');
@@ -90,7 +94,7 @@ public class GuessingResultTest {
         // Act
         guessingResult.updateResponse('в');
         guessingResult.displayResponse();
-        String message = guessingResult.message();
+        String message = stringWriter.toString().trim(); // Получаем вывод
 
         // Assert
         assertThat(guessingResult.response()).containsExactly('_', '_', '_', '_', '_');
