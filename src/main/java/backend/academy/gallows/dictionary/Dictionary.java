@@ -104,7 +104,7 @@ final public class Dictionary {
                     "хрустящий овощ с характерным вкусом, часто добавляется в салаты и супы.")));
     }
 
-    private void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
+    void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
         dictionary.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
     }
 
