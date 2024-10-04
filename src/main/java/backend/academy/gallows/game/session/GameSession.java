@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter public final class GameSession {
     private static final String[] HANGMAN_STAGES = {
