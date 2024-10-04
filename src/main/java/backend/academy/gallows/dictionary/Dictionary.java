@@ -38,7 +38,7 @@ final public class Dictionary {
             new WordWithHint("рябина",
                 "ягоды оранжевого цвета, которые бывают горькими, но ценятся за полезные свойства.")));
 
-        String HERB_HINT_DESCRIPTION = "ароматная зелень, часто используется для украшения и приправы блюд.";
+        String herbHintDescription = "ароматная зелень, часто используется для украшения и приправы блюд.";
         addWords(Difficulties.EASY, Themes.VEGETABLES, List.of(
             new WordWithHint("бобы", "семена, часто используемые в блюдах, имеют высокое содержание белка."),
             new WordWithHint("горох", "зелёные круглые семена, которые обычно добавляют в супы и гарниры."),
@@ -46,7 +46,7 @@ final public class Dictionary {
             new WordWithHint("перец", "может быть сладким или острым, часто используется для приправы блюд."),
             new WordWithHint("редис", "круглый или овальный корнеплод, обычно красного цвета с острым вкусом."),
             new WordWithHint("тыква", "крупный оранжевый овощ, используемый в супах и десертах."),
-            new WordWithHint("укроп", HERB_HINT_DESCRIPTION)));
+            new WordWithHint("укроп", herbHintDescription)));
 
         addWords(Difficulties.MEDIUM, Themes.FRUITS,
             List.of(new WordWithHint("абрикос", "сладкий фрукт с бархатистой кожурой и косточкой внутри."),
@@ -97,7 +97,7 @@ final public class Dictionary {
             List.of(new WordWithHint("баклажаны", "тёмно-фиолетовые овощи, часто используемые в рагу и запеканках."),
                 new WordWithHint("картофель",
                     "клубнеплод, который является основным продуктом питания во многих странах."),
-                new WordWithHint("петрушка", HERB_HINT_DESCRIPTION),
+                new WordWithHint("петрушка", herbHintDescription),
                 new WordWithHint("сельдерей",
                     "хрустящий овощ с характерным вкусом, часто добавляется в салаты и супы.")));
     }

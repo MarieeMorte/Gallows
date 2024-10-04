@@ -10,7 +10,7 @@ import java.util.Scanner;
 import lombok.Getter;
 
 @Getter public final class GameSession {
-    private final String[] HANGMAN_STAGES =
+    private final String[] hangmanStages =
         {"\n\n\n\n\n\n\n\n", "\n\n\n\n\n\n\n—————————", "\n\n   |\n   |\n   |\n   |\n   |\n   |\n—————————",
             "\n\n   | /\n   |/\n   |\n   |\n   |\n   |\n—————————",
             "\n———————————————\n   | /\n   |/\n   |\n   |\n   |\n   |\n—————————",
@@ -19,12 +19,12 @@ import lombok.Getter;
             "\n———————————————\n   | /       |\n   |/        o\n   |         O\n   |\n   |\n   |\n—————————",
             "\n———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |\n   |\n   |\n—————————",
             "\n———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"};
-    private final String ENTER_OPTION_PROMPT = "Введите номер варианта ответа без дополнительных символов: ";
-    private final String UNRECOGNIZED_RESPONSE_PROMPT = "\nОтвет не распознан. Введите число от ";
-    private final int MIN_ATTEMPTS = 1;
-    private final int MAX_ATTEMPTS = 9;
-    private final int FIRST_OPTION = 1;
-    private final int SECOND_OPTION = 2;
+    private final String enterOptionPrompt = "Введите номер варианта ответа без дополнительных символов: ";
+    private final String unrecognizedResponsePrompt = "\nОтвет не распознан. Введите число от ";
+    private final int minAttempts = 1;
+    private final int maxAttempts = 9;
+    private final int firstOption = 1;
+    private final int secondOption = 2;
 
     private final Scanner input;
     private final PrintWriter output;
@@ -47,6 +47,7 @@ import lombok.Getter;
         this.madeAttemptsNum = 0;
     }
 
+    @SuppressWarnings("UncommentedMain")
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         PrintWriter output = new PrintWriter(System.out);
@@ -55,9 +56,6 @@ import lombok.Getter;
         gameSession.start();
     }
 
-    /**
-     * Главный метод для запуска игры "Виселица".
-     */
     public void start() {
         greeting();
         difficultyLevelChoosing();
@@ -83,7 +81,7 @@ import lombok.Getter;
         messaging("Знаете ли Вы правила игры?\n");
         messaging("1. Да;\n");
         messaging("2. Нет.\n\n");
-        messaging(ENTER_OPTION_PROMPT);
+        messaging(enterOptionPrompt);
 
         String strAnswer = input.nextLine();
 
@@ -115,7 +113,7 @@ import lombok.Getter;
         messaging("2. Средний;\n");
         messaging("3. Сложный;\n");
         messaging("4. Рандомный.\n\n");
-        messaging(ENTER_OPTION_PROMPT);
+        messaging(enterOptionPrompt);
     }
 
     public int choosing() {
@@ -126,21 +124,21 @@ import lombok.Getter;
         }
 
         int intAnswer = Integer.parseInt(strAnswer);
-        int RANDOM_OPTION = 4;
-        if (intAnswer == RANDOM_OPTION) {
-            int COUNT_OPTIONS = 3;
-            intAnswer = 1 + random.nextInt(COUNT_OPTIONS);
+        int randomOption = 4;
+        if (intAnswer == randomOption) {
+            int countOptions = 3;
+            intAnswer = 1 + random.nextInt(countOptions);
         }
         return intAnswer;
     }
 
     public void setDifficulty(int number) {
         switch (number) {
-            case FIRST_OPTION -> {
+            case firstOption -> {
                 difficulty = Difficulties.EASY;
                 messaging("\nВыбранный уровень сложности: простой.\n\n");
             }
-            case SECOND_OPTION -> {
+            case secondOption -> {
                 difficulty = Difficulties.MEDIUM;
                 messaging("\nВыбранный уровень сложности: средний.\n\n");
             }
@@ -162,16 +160,16 @@ import lombok.Getter;
         messaging("2. Овощи;\n");
         messaging("3. Ягоды;\n");
         messaging("4. Рандомная.\n\n");
-        messaging(ENTER_OPTION_PROMPT);
+        messaging(enterOptionPrompt);
     }
 
     public void setTheme(int number) {
         switch (number) {
-            case FIRST_OPTION -> {
+            case firstOption -> {
                 theme = Themes.FRUITS;
                 messaging("\nВыбранная тема: фрукты.\n\n");
             }
-            case SECOND_OPTION -> {
+            case secondOption -> {
                 theme = Themes.BERRIES;
                 messaging("\nВыбранная тема: ягоды.\n\n");
             }
@@ -183,18 +181,18 @@ import lombok.Getter;
     }
 
     public void attemptNumChoosing() {
-        String TO_STRING = " до ";
-        messaging("Выберите количество попыток - число от " + MIN_ATTEMPTS + TO_STRING + MAX_ATTEMPTS + ": ");
+        String toString = " до ";
+        messaging("Выберите количество попыток - число от " + minAttempts + toString + maxAttempts + ": ");
 
-        while (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
+        while (attemptsNum < minAttempts || attemptsNum > maxAttempts) {
             String strAnswer = input.nextLine();
             try {
                 attemptsNum = Integer.parseInt(strAnswer);
-                if (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
-                    messaging(UNRECOGNIZED_RESPONSE_PROMPT + MIN_ATTEMPTS + TO_STRING + MAX_ATTEMPTS + ": ");
+                if (attemptsNum < minAttempts || attemptsNum > maxAttempts) {
+                    messaging(unrecognizedResponsePrompt + minAttempts + toString + maxAttempts + ": ");
                 }
             } catch (NumberFormatException e) {
-                messaging(UNRECOGNIZED_RESPONSE_PROMPT + MIN_ATTEMPTS + TO_STRING + MAX_ATTEMPTS + ": ");
+                messaging(unrecognizedResponsePrompt + minAttempts + toString + maxAttempts + ": ");
             }
         }
     }
@@ -218,14 +216,14 @@ import lombok.Getter;
         displayHangman();
         messaging("\nСлово: ");
         guessingResult.displayResponse();
-        int HINT_THRESHOLD = 4;
-        if (attemptsNum - madeAttemptsNum < HINT_THRESHOLD) {
+        int hintThreshold = 4;
+        if (attemptsNum - madeAttemptsNum < hintThreshold) {
             messaging("Подсказка: " + guessingResult.hint() + "\n");
         }
     }
 
     private void displayHangman() {
-        messaging(HANGMAN_STAGES[(int) (MAX_ATTEMPTS * ((double) madeAttemptsNum / attemptsNum))]);
+        messaging(hangmanStages[(int) (maxAttempts * ((double) madeAttemptsNum / attemptsNum))]);
     }
 
     public char getUserInput() {
