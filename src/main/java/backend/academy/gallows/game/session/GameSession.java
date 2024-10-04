@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 import lombok.Getter;
 
-public final class GameSession {
+@Getter public final class GameSession {
     private final String[] HANGMAN_STAGES =
         {"\n\n\n\n\n\n\n\n", "\n\n\n\n\n\n\n—————————", "\n\n   |\n   |\n   |\n   |\n   |\n   |\n—————————",
             "\n\n   | /\n   |/\n   |\n   |\n   |\n   |\n—————————",
@@ -20,9 +20,9 @@ public final class GameSession {
             "\n———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |\n   |\n   |\n—————————",
             "\n———————————————\n   | /       |\n   |/        o\n   |        /O\\\n   |        / \\\n   |\n   |\n—————————"};
     private final String ENTER_OPTION_PROMPT = "Введите номер варианта ответа без дополнительных символов: ";
-    @Getter private final String UNRECOGNIZED_RESPONSE_PROMPT = "\nОтвет не распознан. Введите число от ";
-    @Getter private final int MIN_ATTEMPTS = 1;
-    @Getter private final int MAX_ATTEMPTS = 9;
+    private final String UNRECOGNIZED_RESPONSE_PROMPT = "\nОтвет не распознан. Введите число от ";
+    private final int MIN_ATTEMPTS = 1;
+    private final int MAX_ATTEMPTS = 9;
     private final int FIRST_OPTION = 1;
     private final int SECOND_OPTION = 2;
 
@@ -30,13 +30,13 @@ public final class GameSession {
     private final PrintWriter output;
     private final Random random;
 
-    @Getter private Dictionary dictionary;
-    @Getter private Difficulties difficulty;
-    @Getter private Themes theme;
-    @Getter private GuessingResult guessingResult;
-    @Getter int attemptsNum;
-    @Getter int madeAttemptsNum;
-    @Getter String message;
+    private final Dictionary dictionary;
+    private Difficulties difficulty;
+    private Themes theme;
+    private GuessingResult guessingResult;
+    int attemptsNum;
+    int madeAttemptsNum;
+    String message;
 
     public GameSession(Scanner input, PrintWriter output) {
         this.dictionary = new Dictionary();
