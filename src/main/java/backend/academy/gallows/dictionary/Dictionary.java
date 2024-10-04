@@ -6,22 +6,19 @@ import java.util.Map;
 import java.util.Random;
 
 final public class Dictionary {
-    private static final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> DICTIONARY =
-        new EnumMap<>(Difficulties.class);
-    private static final Random RANDOM = new Random();
+    private final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> dictionary;
+    private final Random random;
 
     private static final String HERB_HINT_DESCRIPTION =
         "ароматная зелень, часто используется для украшения и приправы блюд.";
 
-    static {
+    public Dictionary() {
+        this.dictionary = new EnumMap<>(Difficulties.class);
+        this.random = new Random();
         initializeDictionary();
     }
 
-    private Dictionary() {
-        throw new UnsupportedOperationException("Utility class");
-    }
-
-    static void initializeDictionary() {
+    private void initializeDictionary() {
         addWords(Difficulties.EASY, Themes.FRUITS,
             List.of(new WordWithHint("банан", "жёлтый тропический фрукт, который любят обезьяны."),
                 new WordWithHint("груша", "сладкий фрукт с характерной формой, часто зелёного или жёлтого цвета."),
@@ -107,13 +104,13 @@ final public class Dictionary {
                     "хрустящий овощ с характерным вкусом, часто добавляется в салаты и супы.")));
     }
 
-    static void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
-        DICTIONARY.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
+    private void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
+        dictionary.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
     }
 
-    public static WordWithHint getRandom(Difficulties difficult, Themes theme) {
-        List<WordWithHint> words = DICTIONARY.get(difficult).get(theme);
-        int index = RANDOM.nextInt(words.size());
+    public WordWithHint getRandom(Difficulties difficult, Themes theme) {
+        List<WordWithHint> words = dictionary.get(difficult).get(theme);
+        int index = random.nextInt(words.size());
         return words.get(index);
     }
 }
