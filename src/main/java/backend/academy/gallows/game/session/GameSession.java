@@ -128,10 +128,8 @@ import lombok.Getter;
         }
 
         int intAnswer = Integer.parseInt(strAnswer);
-        int randomOption = 4;
-        if (intAnswer == randomOption) {
-            int countOptions = 3;
-            intAnswer = 1 + random.nextInt(countOptions);
+        if (intAnswer == RANDOM_OPTION) {
+            intAnswer = 1 + random.nextInt(COUNT_OPTIONS);
         }
         return intAnswer;
     }
