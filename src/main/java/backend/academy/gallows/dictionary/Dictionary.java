@@ -9,9 +9,6 @@ final public class Dictionary {
     private final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> dictionary;
     private final Random random;
 
-    private static final String HERB_HINT_DESCRIPTION =
-        "ароматная зелень, часто используется для украшения и приправы блюд.";
-
     public Dictionary() {
         this.dictionary = new EnumMap<>(Difficulties.class);
         this.random = new Random();
@@ -41,6 +38,7 @@ final public class Dictionary {
             new WordWithHint("рябина",
                 "ягоды оранжевого цвета, которые бывают горькими, но ценятся за полезные свойства.")));
 
+        String HERB_HINT_DESCRIPTION = "ароматная зелень, часто используется для украшения и приправы блюд.";
         addWords(Difficulties.EASY, Themes.VEGETABLES, List.of(
             new WordWithHint("бобы", "семена, часто используемые в блюдах, имеют высокое содержание белка."),
             new WordWithHint("горох", "зелёные круглые семена, которые обычно добавляют в супы и гарниры."),
