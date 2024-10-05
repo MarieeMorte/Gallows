@@ -108,7 +108,7 @@ import lombok.Getter;
         messaging("\nЭто игра, в которой игрок пытается угадать загаданное слово, вводя буквы по одной за раз.\n");
         messaging(
             "Вы можете выбрать уровень сложности, категорию слова, которое будете угадывать, и количество попыток.\n");
-        messaging("За каждую неверную догадку визуализируется часть виселицы и фигурки висельника.\n");
+        messaging("За каждую неверную догадку визуализируется часть виселицы и фигурка висельника.\n");
     }
 
     public void difficultyLevelChoosing() {
@@ -165,8 +165,8 @@ import lombok.Getter;
     private void displayThemeOptions() {
         messaging("Выберите тему:\n");
         messaging("1. Фрукты;\n");
-        messaging("2. Овощи;\n");
-        messaging("3. Ягоды;\n");
+        messaging("2. Ягоды;\n");
+        messaging("3. Овощи;\n");
         messaging("4. Рандомная.\n\n");
         messaging(ENTER_OPTION_PROMPT);
     }
