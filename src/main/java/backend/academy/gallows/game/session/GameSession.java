@@ -111,7 +111,7 @@ import lombok.Getter;
         setDifficulty(choosing());
     }
 
-    private void displayDifficultyOptions() {
+    void displayDifficultyOptions() {
         messaging("Выберите уровень сложности игры:\n");
         messaging("1. Простой;\n");
         messaging("2. Средний;\n");
