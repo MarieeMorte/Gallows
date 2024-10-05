@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-final public class Dictionary {
+public final class Dictionary {
     private final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> dictionary;
     private final Random random;
 
