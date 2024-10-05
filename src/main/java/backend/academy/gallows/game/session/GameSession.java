@@ -190,7 +190,7 @@ import lombok.Getter;
             String strAnswer = input.nextLine();
             try {
                 attemptsNum = Integer.parseInt(strAnswer);
-                if (attemptsNum < MAX_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
+                if (attemptsNum < MIN_ATTEMPTS || attemptsNum > MAX_ATTEMPTS) {
                     messaging(UNRECOGNIZED_RESPONSE_PROMPT + MIN_ATTEMPTS + toString + MAX_ATTEMPTS + ": ");
                 }
             } catch (NumberFormatException e) {
