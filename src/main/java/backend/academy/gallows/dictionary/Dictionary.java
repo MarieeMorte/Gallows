@@ -1,17 +1,17 @@
 package backend.academy.gallows.dictionary;
 
+import java.security.SecureRandom;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public final class Dictionary {
     private final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> dictionary;
-    private final Random random;
+    private final SecureRandom random;
 
     public Dictionary() {
         this.dictionary = new EnumMap<>(Difficulties.class);
-        this.random = new Random();
+        this.random = new SecureRandom();
         initializeDictionary();
     }
 

@@ -5,7 +5,7 @@ import backend.academy.gallows.dictionary.Difficulties;
 import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
 import java.io.PrintWriter;
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.Scanner;
 import lombok.Getter;
 
@@ -32,7 +32,7 @@ import lombok.Getter;
 
     private final Scanner input;
     private final PrintWriter output;
-    private final Random random;
+    private final SecureRandom random;
 
     private final Dictionary dictionary;
     private Difficulties difficulty;
@@ -46,7 +46,7 @@ import lombok.Getter;
         this.dictionary = new Dictionary();
         this.input = input;
         this.output = output;
-        this.random = new Random();
+        this.random = new SecureRandom();
         this.attemptsNum = -1;
         this.madeAttemptsNum = 0;
     }
