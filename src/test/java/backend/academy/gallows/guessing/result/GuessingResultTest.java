@@ -3,8 +3,12 @@ package backend.academy.gallows.guessing.result;
 import backend.academy.gallows.dictionary.WordWithHint;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GuessingResultTest {
@@ -97,113 +101,30 @@ public class GuessingResultTest {
         assertThat(guessingResult.madeAttemptsNum()).isEqualTo(1);
     }
 
-    @Test
-    void givenAllLettersAreGuessed_whenCheckingWinCondition_thenExpectGameToBeWon() {
-        // Arrange
-        guessingResult.updateResponse('а');
-        guessingResult.updateResponse('б');
-        guessingResult.updateResponse('н');
-
-        // Act
-        boolean isWin = guessingResult.isGameWin();
-
-        // Assert
-        assertThat(isWin).isTrue();
+    static Stream<Arguments> provideGameStates() {
+        return Stream.of(
+            Arguments.of(new char[] {'а', 'б', 'н'}, true, false, true),
+            Arguments.of(new char[] {'в', 'г', 'д', 'е', 'ё', 'ж'}, false, true, true),
+            Arguments.of(new char[] {'а', 'б', 'в', 'г', 'д', 'е'}, false, false, false)
+        );
     }
 
-    @Test
-    void givenNotAllLettersAreGuessed_whenCheckingWinCondition_thenExpectGameToNotBeWon() {
+    @ParameterizedTest
+    @MethodSource("provideGameStates")
+    void givenLettersUpdated_whenCheckingGameConditions_thenExpectCorrectResults(
+        char[] letters,
+        boolean expectedWin,
+        boolean expectedLoss,
+        boolean expectedGameOver
+    ) {
         // Arrange
-        guessingResult.updateResponse('в');
-        guessingResult.updateResponse('г');
-        guessingResult.updateResponse('д');
-        guessingResult.updateResponse('е');
-        guessingResult.updateResponse('ё');
-        guessingResult.updateResponse('ж');
+        for (char letter : letters) {
+            guessingResult.updateResponse(letter);
+        }
 
-        // Act
-        boolean isWin = guessingResult.isGameWin();
-
-        // Assert
-        assertThat(isWin).isFalse();
-    }
-
-    @Test
-    void givenMaxAttemptsReached_whenCheckingLossCondition_thenExpectGameToBeLost() {
-        // Arrange
-        guessingResult.updateResponse('в');
-        guessingResult.updateResponse('г');
-        guessingResult.updateResponse('д');
-        guessingResult.updateResponse('е');
-        guessingResult.updateResponse('ё');
-        guessingResult.updateResponse('ж');
-
-        // Act
-        boolean isLoss = guessingResult.isGameLoss();
-
-        // Assert
-        assertThat(isLoss).isTrue();
-    }
-
-    @Test
-    void givenAttemptsAreStillAvailable_whenCheckingLossCondition_thenExpectGameToNotBeLost() {
-        // Arrange
-        guessingResult.updateResponse('а');
-        guessingResult.updateResponse('б');
-        guessingResult.updateResponse('н');
-
-        // Act
-        boolean isLoss = guessingResult.isGameLoss();
-
-        // Assert
-        assertThat(isLoss).isFalse();
-    }
-
-    @Test
-    void givenGameIsWon_whenCheckingGameOverCondition_thenExpectGameToBeOver() {
-        // Arrange
-        guessingResult.updateResponse('б');
-        guessingResult.updateResponse('а');
-        guessingResult.updateResponse('н');
-
-        // Act
-        boolean isOver = guessingResult.isGameOver();
-
-        // Assert
-        assertThat(isOver).isTrue();
-    }
-
-    @Test
-    void givenGameIsLost_whenCheckingGameOverCondition_thenExpectGameToBeOver() {
-        /// Arrange
-        guessingResult.updateResponse('в');
-        guessingResult.updateResponse('г');
-        guessingResult.updateResponse('д');
-        guessingResult.updateResponse('е');
-        guessingResult.updateResponse('ё');
-        guessingResult.updateResponse('ж');
-
-        // Act
-        boolean isOver = guessingResult.isGameOver();
-
-        // Assert
-        assertThat(isOver).isTrue();
-    }
-
-    @Test
-    void givenAttemptsRemaining_whenCheckingGameOverCondition_thenExpectGameToNotBeOver() {
-        // Arrange
-        guessingResult.updateResponse('а');
-        guessingResult.updateResponse('б');
-        guessingResult.updateResponse('в');
-        guessingResult.updateResponse('г');
-        guessingResult.updateResponse('д');
-        guessingResult.updateResponse('е');
-
-        // Act
-        boolean isOver = guessingResult.isGameOver();
-
-        // Assert
-        assertThat(isOver).isFalse();
+        // Act & Assert
+        assertThat(guessingResult.isGameWin()).isEqualTo(expectedWin);
+        assertThat(guessingResult.isGameLoss()).isEqualTo(expectedLoss);
+        assertThat(guessingResult.isGameOver()).isEqualTo(expectedGameOver);
     }
 }
