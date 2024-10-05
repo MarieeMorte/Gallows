@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 public final class Dictionary {
-    private final Map<Difficulties, EnumMap<Themes, List<WordWithHint>>> dictionary;
+    private final Map<Difficulty, EnumMap<Theme, List<WordWithHint>>> dictionary;
     private final SecureRandom random;
 
     public Dictionary() {
-        this.dictionary = new EnumMap<>(Difficulties.class);
+        this.dictionary = new EnumMap<>(Difficulty.class);
         this.random = new SecureRandom();
         initializeDictionary();
     }
 
     private void initializeDictionary() {
-        addWords(Difficulties.EASY, Themes.FRUITS,
+        addWords(Difficulty.EASY, Theme.FRUITS,
             List.of(new WordWithHint("банан", "жёлтый тропический фрукт, который любят обезьяны."),
                 new WordWithHint("груша", "сладкий фрукт с характерной формой, часто зелёного или жёлтого цвета."),
                 new WordWithHint("дыня", "крупный сочный фрукт, обычно оранжевого цвета внутри."),
@@ -30,7 +30,7 @@ public final class Dictionary {
                 new WordWithHint("фрукт", "общее название для сладких съедобных плодов растений."),
                 new WordWithHint("хурма", "сладкий фрукт оранжевого цвета, часто употребляется в свежем виде.")));
 
-        addWords(Difficulties.EASY, Themes.BERRIES, List.of(
+        addWords(Difficulty.EASY, Theme.BERRIES, List.of(
             new WordWithHint("бузина", "ягоды чёрного цвета, часто используются для приготовления сиропов и варений."),
             new WordWithHint("калина", "красные ягоды, известные своими лечебными свойствами."),
             new WordWithHint("клюква", "кислые ягоды, часто используются для приготовления соков и морсов."),
@@ -39,7 +39,7 @@ public final class Dictionary {
                 "ягоды оранжевого цвета, которые бывают горькими, но ценятся за полезные свойства.")));
 
         String herbHintDescription = "ароматная зелень, часто используется для украшения и приправы блюд.";
-        addWords(Difficulties.EASY, Themes.VEGETABLES, List.of(
+        addWords(Difficulty.EASY, Theme.VEGETABLES, List.of(
             new WordWithHint("бобы", "семена, часто используемые в блюдах, имеют высокое содержание белка."),
             new WordWithHint("горох", "зелёные круглые семена, которые обычно добавляют в супы и гарниры."),
             new WordWithHint("овощ", "съедобная часть растения, используемая в кулинарии."),
@@ -48,7 +48,7 @@ public final class Dictionary {
             new WordWithHint("тыква", "крупный оранжевый овощ, используемый в супах и десертах."),
             new WordWithHint("укроп", herbHintDescription)));
 
-        addWords(Difficulties.MEDIUM, Themes.FRUITS,
+        addWords(Difficulty.MEDIUM, Theme.FRUITS,
             List.of(new WordWithHint("абрикос", "сладкий фрукт с бархатистой кожурой и косточкой внутри."),
                 new WordWithHint("ананас", "тропический фрукт с шершавой коркой и сладкой мякотью."),
                 new WordWithHint("персик", "сочный фрукт с пушистой кожицей, часто жёлтого или розового цвета."),
@@ -56,12 +56,12 @@ public final class Dictionary {
                 new WordWithHint("яблоко",
                     "популярный фрукт, бывает разных сортов и цветов, часто используется в пирогах.")));
 
-        addWords(Difficulties.MEDIUM, Themes.BERRIES,
+        addWords(Difficulty.MEDIUM, Theme.BERRIES,
             List.of(new WordWithHint("ежевика", "тёмные ягоды с характерными шипами, сладкие и слегка кислые на вкус."),
                 new WordWithHint("черника",
                     "маленькие тёмно-синие ягоды, известные своим сладким вкусом и полезными свойствами.")));
 
-        addWords(Difficulties.MEDIUM, Themes.VEGETABLES,
+        addWords(Difficulty.MEDIUM, Theme.VEGETABLES,
             List.of(new WordWithHint("базилик", "ароматная зелень, часто используется в итальянской кухне."),
                 new WordWithHint("капуста", "листовой овощ, бывает белокочанной, краснокочанной и брюссельской."),
                 new WordWithHint("морковь", "оранжевый корнеплод, богатый витаминами, часто используется в салатах."),
@@ -73,7 +73,7 @@ public final class Dictionary {
                 new WordWithHint("чеснок", "ароматная специя, используемая для придания вкуса блюдам."),
                 new WordWithHint("щавель", "Листовой овощ с кислым вкусом, часто используется в супах и салатах.")));
 
-        addWords(Difficulties.HARD, Themes.FRUITS,
+        addWords(Difficulty.HARD, Theme.FRUITS,
             List.of(new WordWithHint("бергамот",
                     "цитрусовый фрукт с характерным ароматом, часто используется в парфюмерии и чае."),
                 new WordWithHint("виноград", "сладкие ягоды, " + "которые могут быть зелёными, красными или чёрными, "
@@ -82,7 +82,7 @@ public final class Dictionary {
                     "крупный цитрусовый фрукт с горьким вкусом, может быть жёлтым или розовым."),
                 new WordWithHint("мандарин", "сладкий цитрусовый фрукт с легко снимаемой кожурой.")));
 
-        addWords(Difficulties.HARD, Themes.BERRIES,
+        addWords(Difficulty.HARD, Theme.BERRIES,
             List.of(new WordWithHint("барбарис",
                     "ягоды красного или жёлтого цвета, часто используются в компотах и десертах."),
                 new WordWithHint("брусника",
@@ -93,7 +93,7 @@ public final class Dictionary {
                 new WordWithHint("облепиха",
                     "Ярко-оранжевые ягоды, известные своими полезными свойствами и высоким содержанием витаминов.")));
 
-        addWords(Difficulties.HARD, Themes.VEGETABLES,
+        addWords(Difficulty.HARD, Theme.VEGETABLES,
             List.of(new WordWithHint("баклажаны", "тёмно-фиолетовые овощи, часто используемые в рагу и запеканках."),
                 new WordWithHint("картофель",
                     "клубнеплод, который является основным продуктом питания во многих странах."),
@@ -102,11 +102,11 @@ public final class Dictionary {
                     "хрустящий овощ с характерным вкусом, часто добавляется в салаты и супы.")));
     }
 
-    void addWords(Difficulties difficulty, Themes theme, List<WordWithHint> words) {
-        dictionary.computeIfAbsent(difficulty, k -> new EnumMap<>(Themes.class)).put(theme, words);
+    void addWords(Difficulty difficulty, Theme theme, List<WordWithHint> words) {
+        dictionary.computeIfAbsent(difficulty, k -> new EnumMap<>(Theme.class)).put(theme, words);
     }
 
-    public WordWithHint getRandom(Difficulties difficult, Themes theme) {
+    public WordWithHint getRandom(Difficulty difficult, Theme theme) {
         List<WordWithHint> words = dictionary.get(difficult).get(theme);
         int index = random.nextInt(words.size());
         return words.get(index);

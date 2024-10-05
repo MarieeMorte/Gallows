@@ -1,7 +1,7 @@
 package backend.academy.gallows.game.session;
 
-import backend.academy.gallows.dictionary.Difficulties;
-import backend.academy.gallows.dictionary.Themes;
+import backend.academy.gallows.dictionary.Difficulty;
+import backend.academy.gallows.dictionary.Theme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -141,7 +141,7 @@ public class GameSessionTest {
         gameSession.difficultyLevelChoosing();
 
         // Assert
-        assertThat(gameSession.difficulty()).isEqualTo(Difficulties.EASY);
+        assertThat(gameSession.difficulty()).isEqualTo(Difficulty.EASY);
     }
 
     @Test void givenMediumDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
@@ -152,7 +152,7 @@ public class GameSessionTest {
         gameSession.difficultyLevelChoosing();
 
         // Assert
-        assertThat(gameSession.difficulty()).isEqualTo(Difficulties.MEDIUM);
+        assertThat(gameSession.difficulty()).isEqualTo(Difficulty.MEDIUM);
     }
 
     @Test void givenHardDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
@@ -163,7 +163,7 @@ public class GameSessionTest {
         gameSession.difficultyLevelChoosing();
 
         // Assert
-        assertThat(gameSession.difficulty()).isEqualTo(Difficulties.HARD);
+        assertThat(gameSession.difficulty()).isEqualTo(Difficulty.HARD);
     }
 
     @Test void givenFruitThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
@@ -174,7 +174,7 @@ public class GameSessionTest {
         gameSession.themeChoosing();
 
         // Assert
-        assertThat(gameSession.theme()).isEqualTo(Themes.FRUITS);
+        assertThat(gameSession.theme()).isEqualTo(Theme.FRUITS);
     }
 
     @Test void givenBerriesThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
@@ -185,7 +185,7 @@ public class GameSessionTest {
         gameSession.themeChoosing();
 
         // Assert
-        assertThat(gameSession.theme()).isEqualTo(Themes.BERRIES);
+        assertThat(gameSession.theme()).isEqualTo(Theme.BERRIES);
     }
 
     @Test void givenVegetablesThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
@@ -196,7 +196,7 @@ public class GameSessionTest {
         gameSession.themeChoosing();
 
         // Assert
-        assertThat(gameSession.theme()).isEqualTo(Themes.VEGETABLES);
+        assertThat(gameSession.theme()).isEqualTo(Theme.VEGETABLES);
     }
 
     @Test void givenValidAttempts_whenChoosingAttempts_thenSetsAttemptsCorrectly() {

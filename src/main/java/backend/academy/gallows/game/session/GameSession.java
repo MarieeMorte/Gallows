@@ -1,8 +1,8 @@
 package backend.academy.gallows.game.session;
 
 import backend.academy.gallows.dictionary.Dictionary;
-import backend.academy.gallows.dictionary.Difficulties;
-import backend.academy.gallows.dictionary.Themes;
+import backend.academy.gallows.dictionary.Difficulty;
+import backend.academy.gallows.dictionary.Theme;
 import backend.academy.gallows.guessing.result.GuessingResult;
 import java.io.PrintWriter;
 import java.security.SecureRandom;
@@ -40,8 +40,8 @@ import lombok.Getter;
     private final SecureRandom random;
 
     private final Dictionary dictionary;
-    private Difficulties difficulty;
-    private Themes theme;
+    private Difficulty difficulty;
+    private Theme theme;
     private GuessingResult guessingResult;
     public int attemptsNum;
     int madeAttemptsNum;
@@ -143,15 +143,15 @@ import lombok.Getter;
     public void setDifficulty(int number) {
         switch (number) {
             case FIRST_OPTION -> {
-                difficulty = Difficulties.EASY;
+                difficulty = Difficulty.EASY;
                 messaging("\nВыбранный уровень сложности: простой.\n\n");
             }
             case SECOND_OPTION -> {
-                difficulty = Difficulties.MEDIUM;
+                difficulty = Difficulty.MEDIUM;
                 messaging("\nВыбранный уровень сложности: средний.\n\n");
             }
             default -> {
-                difficulty = Difficulties.HARD;
+                difficulty = Difficulty.HARD;
                 messaging("\nВыбранный уровень сложности: сложный.\n\n");
             }
         }
@@ -174,15 +174,15 @@ import lombok.Getter;
     public void setTheme(int number) {
         switch (number) {
             case FIRST_OPTION -> {
-                theme = Themes.FRUITS;
+                theme = Theme.FRUITS;
                 messaging("\nВыбранная тема: фрукты.\n\n");
             }
             case SECOND_OPTION -> {
-                theme = Themes.BERRIES;
+                theme = Theme.BERRIES;
                 messaging("\nВыбранная тема: ягоды.\n\n");
             }
             default -> {
-                theme = Themes.VEGETABLES;
+                theme = Theme.VEGETABLES;
                 messaging("\nВыбранная тема: овощи.\n\n");
             }
         }
