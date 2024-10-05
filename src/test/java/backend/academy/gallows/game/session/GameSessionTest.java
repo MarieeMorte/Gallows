@@ -4,10 +4,14 @@ import backend.academy.gallows.dictionary.Difficulty;
 import backend.academy.gallows.dictionary.Theme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -75,51 +79,34 @@ public class GameSessionTest {
         Mockito.verify(mockOutput).print(ENTER_OPTION_PROMPT);
     }
 
-    @Test void givenOne_whenChoosing_thenReturnsCorrectOption() {
+    static Stream<Arguments> provideOptions() {
+        return Stream.of(
+            Arguments.of(FIRST_OPTION),
+            Arguments.of(SECOND_OPTION),
+            Arguments.of(THIRD_OPTION),
+            Arguments.of(RANDOM_OPTION)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideOptions")
+    void givenOption_whenChoosing_thenReturnsCorrectOption(int option) {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(FIRST_OPTION));
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(option));
 
         // Act
         int result = gameSession.choosing();
 
         // Assert
-        assertThat(result).isEqualTo(FIRST_OPTION);
+        if (option == RANDOM_OPTION) {
+            assertThat(result).isIn(FIRST_OPTION, SECOND_OPTION, THIRD_OPTION);
+        } else {
+            assertThat(result).isEqualTo(option);
+        }
     }
 
-    @Test void givenTwo_whenChoosing_thenReturnsCorrectOption() {
-        // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(SECOND_OPTION));
-
-        // Act
-        int result = gameSession.choosing();
-
-        // Assert
-        assertThat(result).isEqualTo(SECOND_OPTION);
-    }
-
-    @Test void givenThree_whenChoosing_thenReturnsCorrectOption() {
-        // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(THIRD_OPTION));
-
-        // Act
-        int result = gameSession.choosing();
-
-        // Assert
-        assertThat(result).isEqualTo(THIRD_OPTION);
-    }
-
-    @Test void givenFour_whenChoosing_thenReturnsCorrectOption() {
-        // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(RANDOM_OPTION));
-
-        // Act
-        int result = gameSession.choosing();
-
-        // Assert
-        assertThat(result).isIn(FIRST_OPTION, SECOND_OPTION, THIRD_OPTION);
-    }
-
-    @Test void givenMultipleInvalidInputs_whenChoosing_thenPromptsUntilValidInput() {
+    @Test
+    void givenMultipleInvalidInputs_whenChoosing_thenPromptsUntilValidInput() {
         // Arrange
         Mockito.when(mockInput.nextLine()).thenReturn("abc").thenReturn("0").thenReturn("5")
             .thenReturn(String.valueOf(FIRST_OPTION));
@@ -133,70 +120,49 @@ public class GameSessionTest {
             .print("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
     }
 
-    @Test void givenEasyDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
+    static Stream<Arguments> provideDifficultyOptions() {
+        return Stream.of(
+            Arguments.of(FIRST_OPTION, Difficulty.EASY),
+            Arguments.of(SECOND_OPTION, Difficulty.MEDIUM),
+            Arguments.of(THIRD_OPTION, Difficulty.HARD)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideDifficultyOptions")
+    void givenDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly(
+        int option,
+        Difficulty expectedDifficulty
+    ) {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(FIRST_OPTION));
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(option));
 
         // Act
         gameSession.difficultyLevelChoosing();
 
         // Assert
-        assertThat(gameSession.difficulty()).isEqualTo(Difficulty.EASY);
+        assertThat(gameSession.difficulty()).isEqualTo(expectedDifficulty);
     }
 
-    @Test void givenMediumDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
-        // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(SECOND_OPTION));
-
-        // Act
-        gameSession.difficultyLevelChoosing();
-
-        // Assert
-        assertThat(gameSession.difficulty()).isEqualTo(Difficulty.MEDIUM);
+    static Stream<Arguments> provideThemeOptions() {
+        return Stream.of(
+            Arguments.of(FIRST_OPTION, Theme.FRUITS),
+            Arguments.of(SECOND_OPTION, Theme.BERRIES),
+            Arguments.of(THIRD_OPTION, Theme.VEGETABLES)
+        );
     }
 
-    @Test void givenHardDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
+    @ParameterizedTest
+    @MethodSource("provideThemeOptions")
+    void givenThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly(int option, Theme expectedTheme) {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(THIRD_OPTION));
-
-        // Act
-        gameSession.difficultyLevelChoosing();
-
-        // Assert
-        assertThat(gameSession.difficulty()).isEqualTo(Difficulty.HARD);
-    }
-
-    @Test void givenFruitThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
-        // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(FIRST_OPTION));
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(option));
 
         // Act
         gameSession.themeChoosing();
 
         // Assert
-        assertThat(gameSession.theme()).isEqualTo(Theme.FRUITS);
-    }
-
-    @Test void givenBerriesThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
-        // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(SECOND_OPTION));
-
-        // Act
-        gameSession.themeChoosing();
-
-        // Assert
-        assertThat(gameSession.theme()).isEqualTo(Theme.BERRIES);
-    }
-
-    @Test void givenVegetablesThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
-        // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(THIRD_OPTION));
-
-        // Act
-        gameSession.themeChoosing();
-
-        // Assert
-        assertThat(gameSession.theme()).isEqualTo(Theme.VEGETABLES);
+        assertThat(gameSession.theme()).isEqualTo(expectedTheme);
     }
 
     @Test void givenValidAttempts_whenChoosingAttempts_thenSetsAttemptsCorrectly() {
