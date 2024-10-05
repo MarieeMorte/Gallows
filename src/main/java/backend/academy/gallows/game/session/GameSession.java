@@ -6,6 +6,7 @@ import backend.academy.gallows.dictionary.Themes;
 import backend.academy.gallows.guessing.result.GuessingResult;
 import java.io.PrintWriter;
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Scanner;
 import lombok.Getter;
 
@@ -22,12 +23,16 @@ import lombok.Getter;
     };
     private static final String ENTER_OPTION_PROMPT = "Введите номер варианта ответа без дополнительных символов: ";
     private static final String UNRECOGNIZED_RESPONSE_PROMPT = "\nОтвет не распознан. Введите число от ";
+
     private static final int MIN_ATTEMPTS = 1;
     private static final int MAX_ATTEMPTS = 9;
+
+    private static final int COUNT_UNIQUE_OPTIONS = 3;
     private static final int FIRST_OPTION = 1;
     private static final int SECOND_OPTION = 2;
+    private static final int THIRD_OPTION = 3;
     private static final int RANDOM_OPTION = 4;
-    private static final int COUNT_OPTIONS = 3;
+
     private static final int HINT_THRESHOLD = 4;
 
     private final Scanner input;
@@ -89,12 +94,12 @@ import lombok.Getter;
 
         String strAnswer = input.nextLine();
 
-        while (!strAnswer.equals("1") && !strAnswer.equals("2")) {
+        while (!List.of(String.valueOf(FIRST_OPTION), String.valueOf(SECOND_OPTION)).contains(strAnswer)) {
             messaging("\nОтвет не распознан. Введите \"1\" или \"2\" (без кавычек): ");
             strAnswer = input.nextLine();
         }
 
-        if (strAnswer.equals("2")) {
+        if (strAnswer.equals(String.valueOf(SECOND_OPTION))) {
             explainGameRules();
         }
     }
@@ -122,14 +127,15 @@ import lombok.Getter;
 
     public int choosing() {
         String strAnswer = input.nextLine();
-        while (!strAnswer.equals("1") && !strAnswer.equals("2") && !strAnswer.equals("3") && !strAnswer.equals("4")) {
+        while (!List.of(String.valueOf(FIRST_OPTION), String.valueOf(SECOND_OPTION), String.valueOf(THIRD_OPTION),
+            String.valueOf(RANDOM_OPTION)).contains(strAnswer)) {
             messaging("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
             strAnswer = input.nextLine();
         }
 
         int intAnswer = Integer.parseInt(strAnswer);
         if (intAnswer == RANDOM_OPTION) {
-            intAnswer = 1 + random.nextInt(COUNT_OPTIONS);
+            intAnswer = MIN_ATTEMPTS + random.nextInt(COUNT_UNIQUE_OPTIONS);
         }
         return intAnswer;
     }
@@ -231,7 +237,7 @@ import lombok.Getter;
         messaging("\nВведите русскую букву в любом регистре или слово: ");
         String strAnswer = input.nextLine();
 
-        while (strAnswer.length() != 1 || !isCyrillicLetter(strAnswer.charAt(0))) {
+        while (!(strAnswer.length() == 1 && isCyrillicLetter(strAnswer.charAt(0)))) {
             messaging("\nВы должны ввести одну русскую букву в любом регистре: ");
             strAnswer = input.nextLine();
         }

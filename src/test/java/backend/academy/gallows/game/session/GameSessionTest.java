@@ -14,6 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameSessionTest {
     private static final String ENTER_OPTION_PROMPT = "Введите номер варианта ответа без дополнительных символов: ";
 
+    private static final int FIRST_OPTION = 1;
+    private static final int SECOND_OPTION = 2;
+    private static final int THIRD_OPTION = 3;
+    private static final int RANDOM_OPTION = 4;
+
     private Scanner mockInput;
     private PrintWriter mockOutput;
     private GameSession gameSession;
@@ -27,7 +32,7 @@ public class GameSessionTest {
 
     @Test void givenYesAnswer_whenDisplayGameRules_thenDoesNotExplainRules() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("1");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(FIRST_OPTION));
 
         // Act
         gameSession.displayGameRules();
@@ -42,7 +47,7 @@ public class GameSessionTest {
 
     @Test void givenNoAnswer_whenDisplayGameRules_thenExplainsRules() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("2");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(SECOND_OPTION));
 
         // Act
         gameSession.displayGameRules();
@@ -58,7 +63,8 @@ public class GameSessionTest {
 
     @Test void givenMultipleInvalidAnswers_whenDisplayGameRules_thenPromptsUntilValidInput() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("abc").thenReturn("0").thenReturn("3").thenReturn("1");
+        Mockito.when(mockInput.nextLine()).thenReturn("abc").thenReturn("0").thenReturn("3")
+            .thenReturn(String.valueOf(FIRST_OPTION));
 
         // Act
         gameSession.displayGameRules();
@@ -71,64 +77,65 @@ public class GameSessionTest {
 
     @Test void givenOne_whenChoosing_thenReturnsCorrectOption() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("1");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(FIRST_OPTION));
 
         // Act
         int result = gameSession.choosing();
 
         // Assert
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(FIRST_OPTION);
     }
 
     @Test void givenTwo_whenChoosing_thenReturnsCorrectOption() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("2");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(SECOND_OPTION));
 
         // Act
         int result = gameSession.choosing();
 
         // Assert
-        assertThat(result).isEqualTo(2);
+        assertThat(result).isEqualTo(SECOND_OPTION);
     }
 
     @Test void givenThree_whenChoosing_thenReturnsCorrectOption() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("3");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(THIRD_OPTION));
 
         // Act
         int result = gameSession.choosing();
 
         // Assert
-        assertThat(result).isEqualTo(3);
+        assertThat(result).isEqualTo(THIRD_OPTION);
     }
 
     @Test void givenFour_whenChoosing_thenReturnsCorrectOption() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("4");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(RANDOM_OPTION));
 
         // Act
         int result = gameSession.choosing();
 
         // Assert
-        assertThat(result).isIn(1, 2, 3);
+        assertThat(result).isIn(FIRST_OPTION, SECOND_OPTION, THIRD_OPTION);
     }
 
     @Test void givenMultipleInvalidInputs_whenChoosing_thenPromptsUntilValidInput() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("abc").thenReturn("0").thenReturn("5").thenReturn("1");
+        Mockito.when(mockInput.nextLine()).thenReturn("abc").thenReturn("0").thenReturn("5")
+            .thenReturn(String.valueOf(FIRST_OPTION));
 
         // Act
         int result = gameSession.choosing();
 
         // Assert
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(FIRST_OPTION);
         Mockito.verify(mockOutput, Mockito.times(3))
             .print("\nОтвет не распознан. Введите \"1\", \"2\", \"3\" или \"4\" (без кавычек): ");
     }
 
     @Test void givenEasyDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("1");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(FIRST_OPTION));
 
         // Act
         gameSession.difficultyLevelChoosing();
@@ -139,7 +146,7 @@ public class GameSessionTest {
 
     @Test void givenMediumDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("2");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(SECOND_OPTION));
 
         // Act
         gameSession.difficultyLevelChoosing();
@@ -150,7 +157,7 @@ public class GameSessionTest {
 
     @Test void givenHardDifficultySelection_whenChoosingDifficulty_thenSetsDifficultyCorrectly() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("3");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(THIRD_OPTION));
 
         // Act
         gameSession.difficultyLevelChoosing();
@@ -161,7 +168,7 @@ public class GameSessionTest {
 
     @Test void givenFruitThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("1");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(FIRST_OPTION));
 
         // Act
         gameSession.themeChoosing();
@@ -172,7 +179,7 @@ public class GameSessionTest {
 
     @Test void givenBerriesThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("2");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(SECOND_OPTION));
 
         // Act
         gameSession.themeChoosing();
@@ -183,7 +190,7 @@ public class GameSessionTest {
 
     @Test void givenVegetablesThemeSelection_whenChoosingTheme_thenSetsThemeCorrectly() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("3");
+        Mockito.when(mockInput.nextLine()).thenReturn(String.valueOf(THIRD_OPTION));
 
         // Act
         gameSession.themeChoosing();
