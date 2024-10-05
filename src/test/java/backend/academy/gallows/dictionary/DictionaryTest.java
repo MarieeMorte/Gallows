@@ -47,7 +47,6 @@ public class DictionaryTest {
         WordWithHint word = dictionary.getRandom(difficulty, theme);
 
         // Assert
-        assertThat(word).isNotNull();
         assertThat(word.word()).isIn(expectedWords);
     }
 
@@ -81,7 +80,6 @@ public class DictionaryTest {
         WordWithHint word = dictionary.getRandom(difficulty, theme);
 
         // Assert
-        assertThat(word).isNotNull();
         assertThat(word.word()).isIn(expectedWords);
     }
 }

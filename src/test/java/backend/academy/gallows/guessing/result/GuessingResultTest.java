@@ -26,7 +26,6 @@ public class GuessingResultTest {
         String word = guessingResult.word();
 
         // Assert
-        assertThat(word).isNotNull();
         assertThat(word).isEqualTo("банан");
     }
 
@@ -36,7 +35,6 @@ public class GuessingResultTest {
         String hint = guessingResult.hint();
 
         // Assert
-        assertThat(hint).isNotNull();
         assertThat(hint).isEqualTo("жёлтый тропический фрукт, который любят обезьяны.");
     }
 
@@ -46,8 +44,6 @@ public class GuessingResultTest {
         char[] response = guessingResult.response();
 
         // Assert
-        assertThat(response).isNotNull();
-        assertThat(response).isNotEmpty();
         assertThat(response).hasSize(5);
         assertThat(response).containsExactly('_', '_', '_', '_', '_');
     }
@@ -59,7 +55,6 @@ public class GuessingResultTest {
         String message = stringWriter.toString().trim();
 
         // Assert
-        assertThat(message).isNotNull();
         assertThat(message).hasSize(5);
         assertThat(message).isEqualTo("_____");
     }
