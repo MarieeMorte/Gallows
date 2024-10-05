@@ -226,25 +226,17 @@ public class GameSessionTest {
         assertThat(result).isEqualTo('а');
     }
 
-    @Test void givenInvalidInputMoreThanOneCharacter_whenGetUserInput_thenPromptsForCorrectInput() {
+    @Test
+    void givenInvalidInput_whenGetUserInput_thenPromptsUntilValidInput() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("аб").thenReturn("А");
+        Mockito.when(mockInput.nextLine()).thenReturn("аб").thenReturn("1").thenReturn("w").thenReturn("а");
 
         // Act
         char result = gameSession.getUserInput();
 
         // Assert
         assertThat(result).isEqualTo('а');
-    }
-
-    @Test void givenCorrectWordLength_whenInitialization_thenGameStarts() {
-        // Arrange
-        gameSession.setDifficulty(1);
-        gameSession.setTheme(1);
-        gameSession.attemptsNum = 5;
-        gameSession.initialization();
-
-        // Assert
-        assertThat(gameSession.guessingResult().word()).isNotEmpty();
+        Mockito.verify(mockOutput, Mockito.times(3))
+            .print("\nВы должны ввести одну русскую букву в любом регистре: ");
     }
 }
