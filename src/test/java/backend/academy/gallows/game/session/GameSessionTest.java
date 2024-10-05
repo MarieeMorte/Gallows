@@ -194,24 +194,25 @@ public class GameSessionTest {
 
     @Test void givenValidAttempts_whenChoosingAttempts_thenSetsAttemptsCorrectly() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("5");
+        Mockito.when(mockInput.nextLine()).thenReturn("6");
 
         // Act
         gameSession.attemptNumChoosing();
 
         // Assert
-        assertThat(gameSession.attemptsNum()).isEqualTo(5);
+        assertThat(gameSession.attemptsNum()).isEqualTo(6);
     }
 
-    @Test void givenOutOfRangeAttempts_whenChoosingAttempts_thenPromptsForCorrectInput() {
+    @Test void givenMultipleInvalidAttempts_whenChoosingAttempts_thenPromptsUntilValidInput() {
         // Arrange
-        Mockito.when(mockInput.nextLine()).thenReturn("15").thenReturn("2");
+        Mockito.when(mockInput.nextLine()).thenReturn("abs").thenReturn("0").thenReturn("10").thenReturn("6");
 
         // Act
         gameSession.attemptNumChoosing();
 
         // Assert
-        assertThat(gameSession.attemptsNum()).isEqualTo(2);
+        assertThat(gameSession.attemptsNum()).isEqualTo(6);
+        Mockito.verify(mockOutput, Mockito.times(3)).print("\nОтвет не распознан. Введите число от 1 до 9: ");
     }
 
     @Test void givenValidInput_whenGetUserInput_thenReturnsLowercaseLetter() {

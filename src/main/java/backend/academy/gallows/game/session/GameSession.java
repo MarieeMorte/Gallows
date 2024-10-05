@@ -39,7 +39,7 @@ import lombok.Getter;
     private Themes theme;
     private GuessingResult guessingResult;
     public int attemptsNum;
-    private int madeAttemptsNum;
+    int madeAttemptsNum;
     private String message;
 
     public GameSession(Scanner input, PrintWriter output) {
@@ -223,7 +223,7 @@ import lombok.Getter;
         }
     }
 
-    private void displayHangman() {
+    void displayHangman() {
         messaging(HANGMAN_STAGES[(int) (MAX_ATTEMPTS * ((double) madeAttemptsNum / attemptsNum))]);
     }
 
